@@ -15,11 +15,6 @@ public class Enums {
         gpsV2
     }
 
-    public enum UsesWebsite {
-        yes,
-        no
-    }
-
     public enum Status {
         open,
         closed,
