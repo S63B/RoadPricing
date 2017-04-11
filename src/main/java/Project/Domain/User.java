@@ -1,9 +1,6 @@
 package Project.Domain;
 
-import Project.Domain.Enums.EnergyLabel;
-import Project.Domain.Enums.Hardware;
-import Project.Domain.Enums.IdentificationMethod;
-
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,6 +15,7 @@ public class User {
     private String role;
     private boolean canEditPrice;
     private List<Invoice> invoices;
+    private List<Car_Ownership> ownedCars;
 
     public User() {
 
@@ -33,6 +31,7 @@ public class User {
         this.usesWebsite = usesWebsite;
         this.role = role;
         this.canEditPrice = canEditPrice;
+        this.ownedCars = new ArrayList<Car_Ownership>();
     }
 
     //region Getters and Setters
@@ -99,6 +98,15 @@ public class User {
     public void setInvoices(List<Invoice> invoices) {
         this.invoices = invoices;
     }
+
+    public List<Car_Ownership> getOwnedCars() {
+        return ownedCars;
+    }
+
+    public void setOwnedCars(List<Car_Ownership> ownedCars) {
+        this.ownedCars = ownedCars;
+    }
+
     //endregion
 
     @Override
