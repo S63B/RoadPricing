@@ -5,3 +5,6 @@ body {
 body {
     padding-top: 100px;
 }
+.table-hover{
+    cursor: pointer;
+}
