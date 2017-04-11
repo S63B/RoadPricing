@@ -1,6 +1,6 @@
 import { RoadPricingAngularPage } from './app.po';
 
-describe('road-pricing-angular App', () => {
+describe('road-pricing-angular App', function() {
   let page: RoadPricingAngularPage;
 
   beforeEach(() => {
