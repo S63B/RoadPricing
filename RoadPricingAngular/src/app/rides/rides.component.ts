@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 import { Component, OnInit } from '@angular/core';
 import { RideService } from "app/ride.service";
+=======
+import { Component, OnInit, Input } from '@angular/core';
+>>>>>>> refs/remotes/origin/Single-invoice-screen
 import { Ride } from "app/ride";
 
 @Component({
@@ -8,6 +12,7 @@ import { Ride } from "app/ride";
   styleUrls: ['./rides.component.css']
 })
 export class RidesComponent implements OnInit {
+  @Input() rides: Ride[];
 
   constructor() { }
 
