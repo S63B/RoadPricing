@@ -1,3 +1,21 @@
-<p>
-  rides works!
-</p>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Rides</div>
+  <!-- Table -->
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Distance</th>
+        <th>Time</th>
+      </tr>
+    </thead>
+    <tr *ngFor="let ride of rides" id="cards">
+      <td>
+        {{ride?.getDistanceString()}}
+      </td>
+      <td>
+        {{ride?.startTime | date: 'dd MMM hh:mm:ss'}} - {{ride?.endTime | date: 'dd MMM hh:mm:ss'}}
+      </td>
+    </tr>
+  </table>
+</div>

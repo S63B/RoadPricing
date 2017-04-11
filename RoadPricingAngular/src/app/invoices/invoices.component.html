@@ -1,3 +1,29 @@
-<p>
-  invoices works!
-</p>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Invoices</div>
+  <!-- Table -->
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Price</th>
+        <th>Date</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tr *ngFor="let invoice of invoices" id="cards">
+      <td>
+        {{invoice?.id}}
+      </td>
+      <td>
+        {{invoice?.totalPrice}}
+      </td>
+      <td>
+        {{invoice?.date}}
+      </td>
+      <td>
+        {{invoice?.paymentStatus}}
+      </td>
+    </tr>
+  </table>
+</div>

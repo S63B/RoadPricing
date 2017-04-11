@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Invoice } from "app/invoice";
 
 @Component({
   selector: 'app-invoices',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./invoices.component.css']
 })
 export class InvoicesComponent implements OnInit {
+
+  @Input() invoices: Invoice[];
 
   constructor() { }
 
