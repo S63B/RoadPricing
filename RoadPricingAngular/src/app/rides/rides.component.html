@@ -1,0 +1,21 @@
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Rides</div>
+  <!-- Table -->
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Time</th>
+        <th>Distance</th>
+      </tr>
+    </thead>
+    <tr *ngFor="let ride of rides" id="cards" onclick="getElementById('edit-1').click()">
+      <td>
+        {{ride?.startTime | date: 'hh:mm:ss'}}/{{ride?.endTime | date: 'hh:mm:ss'}} - {{ride?.startTime | date: 'dd MMM'}}
+      </td>
+      <td>
+        {{ride?.getDistanceString()}}
+      </td>
+    </tr>
+  </table>
+</div>
