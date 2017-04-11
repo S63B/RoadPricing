@@ -2,8 +2,7 @@ export class Pol {
     constructor(
         public id: number,
         public lat: number,
-        public lng: number
-    ) {
-            
+        public lng: number,
+        public date: number) {
     }
 }
