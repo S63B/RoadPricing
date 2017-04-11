@@ -4,6 +4,7 @@ import Project.Domain.Enums.EnergyLabel;
 import Project.Domain.Enums.Hardware;
 import Project.Domain.Enums.IdentificationMethod;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,6 +19,7 @@ public class User {
     private String role;
     private boolean canEditPrice;
     private List<Invoice> invoices;
+    private List<Car> cars;
 
     public User() {
 
@@ -33,6 +35,7 @@ public class User {
         this.usesWebsite = usesWebsite;
         this.role = role;
         this.canEditPrice = canEditPrice;
+        this.cars = new ArrayList<Car>();
     }
 
     //region Getters and Setters
