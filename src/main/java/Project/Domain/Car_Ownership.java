@@ -1,5 +1,7 @@
 package Project.Domain;
 
+import org.joda.time.DateTime;
+
 import java.time.LocalDate;
 
 /**
@@ -8,9 +10,9 @@ import java.time.LocalDate;
 public class Car_Ownership {
 	private Car car;
 	private User user;
-	private LocalDate purchaseDate;
+	private DateTime purchaseDate;
 
-	public Car_Ownership(Car car, User user, LocalDate purchaseDate) {
+	public Car_Ownership(Car car, User user, DateTime purchaseDate) {
 		this.car = car;
 		this.user = user;
 		this.purchaseDate = purchaseDate;
@@ -33,11 +35,11 @@ public class Car_Ownership {
 		this.user = user;
 	}
 
-	public LocalDate getPurchaseDate() {
+	public DateTime getPurchaseDate() {
 		return purchaseDate;
 	}
 
-	public void setPurchaseDate(LocalDate purchaseDate) {
+	public void setPurchaseDate(DateTime purchaseDate) {
 		this.purchaseDate = purchaseDate;
 	}
 

@@ -1,4 +1,6 @@
 package Project.Domain;
+import org.joda.time.DateTime;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,10 +11,10 @@ import java.util.List;
 public class Invoice {
     private int id;
     private User user;
-    private LocalDate date;
+    private DateTime date;
     private double totalPrice;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private DateTime startDate;
+    private DateTime endDate;
     private int paymentStatus;
     private String countryOfOrigin;
 
@@ -39,11 +41,11 @@ public class Invoice {
         this.user = user;
     }
 
-    public LocalDate getDate() {
+    public DateTime getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(DateTime date) {
         this.date = date;
     }
 
@@ -55,19 +57,19 @@ public class Invoice {
         this.totalPrice = totalPrice;
     }
 
-    public LocalDate getStartDate() {
+    public DateTime getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
+    public void setStartDate(DateTime startDate) {
         this.startDate = startDate;
     }
 
-    public LocalDate getEndDate() {
+    public DateTime getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
+    public void setEndDate(DateTime endDate) {
         this.endDate = endDate;
     }
 

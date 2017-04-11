@@ -1,5 +1,7 @@
 package Project.Domain;
 
+import org.joda.time.DateTime;
+
 import java.time.LocalDate;
 
 /**
@@ -8,7 +10,7 @@ import java.time.LocalDate;
 public class LicensePlate {
 	private int id;
 	private String license;
-	private LocalDate expirationDate;
+	private DateTime expirationDate;
 
 	//region Getters and setters
 	public int getId() {
@@ -27,11 +29,11 @@ public class LicensePlate {
 		this.license = license;
 	}
 
-	public LocalDate getExpirationDate() {
+	public DateTime getExpirationDate() {
 		return expirationDate;
 	}
 
-	public void setExpirationDate(LocalDate expirationDate) {
+	public void setExpirationDate(DateTime expirationDate) {
 		this.expirationDate = expirationDate;
 	}
 	//endregion

@@ -1,5 +1,7 @@
 package Project.Domain;
 
+import org.joda.time.DateTime;
+
 import java.time.LocalDate;
 
 /**
@@ -10,5 +12,5 @@ public class Pol {
 	private Tracker tracker;
 	private double latitude;
 	private double longitude;
-	private LocalDate date;
+	private DateTime date;
 }
