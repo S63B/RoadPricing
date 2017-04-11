@@ -7,21 +7,27 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 
-import { AppRoutingModule } from './app.routing-module';
+import { routing } from './app.routing';
 import { InvoiceComponent } from './invoice/invoice.component';
+import { HomeComponent } from './home/home.component';
+import { RidesComponent } from './rides/rides.component';
+import { InvoicesComponent } from './invoices/invoices.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    InvoiceComponent
+    InvoiceComponent,
+    HomeComponent,
+    RidesComponent,
+    InvoicesComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    routing
   ],
   providers: [],
   bootstrap: [AppComponent]
