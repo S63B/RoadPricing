@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Ride } from "app/ride";
 
 @Component({
   selector: 'app-rides',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./rides.component.css']
 })
 export class RidesComponent implements OnInit {
+  @Input() rides: Ride[];
 
   constructor() { }
 
