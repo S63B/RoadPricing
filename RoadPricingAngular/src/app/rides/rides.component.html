@@ -5,16 +5,16 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <th>Distance</th>
         <th>Time</th>
+        <th>Distance</th>
       </tr>
     </thead>
     <tr *ngFor="let ride of rides" id="cards" onclick="getElementById('edit-1').click()">
       <td>
-        {{ride?.getDistanceString()}}
+        {{ride?.startTime | date: 'hh:mm:ss'}}/{{ride?.endTime | date: 'hh:mm:ss'}} - {{ride?.startTime | date: 'dd MMM'}}
       </td>
       <td>
-        {{ride?.startTime | date: 'hh:mm:ss'}}/{{ride?.endTime | date: 'hh:mm:ss'}} - {{ride?.startTime | date: 'dd MMM'}}
+        {{ride?.getDistanceString()}}
       </td>
     </tr>
   </table>

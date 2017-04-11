@@ -5,21 +5,17 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <th>#</th>
-        <th>Price</th>
         <th>Date</th>
+        <th>Price</th>
         <th>Status</th>
       </tr>
     </thead>
     <tr *ngFor="let invoice of invoices" id="cards">
       <td>
-        {{invoice?.id}}
+        {{invoice?.date | date: 'dd MMM yyyy'}}
       </td>
       <td>
         {{invoice?.totalPrice}}
-      </td>
-      <td>
-        {{invoice?.date | date: 'dd MMM yyyy'}}
       </td>
       <td>
         {{invoice?.paymentStatus}}
