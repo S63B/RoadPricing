@@ -12,6 +12,9 @@ import { InvoiceComponent } from './invoice/invoice.component';
 import { HomeComponent } from './home/home.component';
 import { RidesComponent } from './rides/rides.component';
 import { InvoicesComponent } from './invoices/invoices.component';
+import { HttpService } from "app/http.service";
+import { RideService } from "app/ride.service";
+import { InvoiceService } from "app/invoice.service";
 
 @NgModule({
   declarations: [
@@ -29,7 +32,12 @@ import { InvoicesComponent } from './invoices/invoices.component';
     HttpModule,
     routing
   ],
-  providers: [],
+  providers: [
+    HttpService,
+    HttpModule,
+    RideService,
+    InvoiceService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

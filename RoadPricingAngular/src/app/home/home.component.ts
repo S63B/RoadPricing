@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Ride } from "app/ride";
+import { RideService } from "app/ride.service";
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  rides: Ride[];
+
+  constructor(private rideService: RideService) { }
 
   ngOnInit() {
+    let date = new Date();
+    let currentMilis: number = date.getMilliseconds();
+    date.setMonth(date.getMonth() - 1);
+    let prevMonthMilis: number = date.getMilliseconds();
+
+    this.getRidesBetween(prevMonthMilis, currentMilis);
   }
 
+  public getRidesBetween(startTime: number, endTime: number) {
+    this.rideService.getRidesBetween('bramdb', startTime, endTime).subscribe(rides => {
+      this.rides = rides;
+    });
+  }
 }
