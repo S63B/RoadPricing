@@ -15,7 +15,7 @@ public class User {
     private String role;
     private boolean canEditPrice;
     private List<Invoice> invoices;
-    private List<Car> cars;
+    private List<Car_Ownership> ownedCars;
 
     public User() {
 
@@ -31,7 +31,7 @@ public class User {
         this.usesWebsite = usesWebsite;
         this.role = role;
         this.canEditPrice = canEditPrice;
-        this.cars = new ArrayList<Car>();
+        this.ownedCars = new ArrayList<Car_Ownership>();
     }
 
     //region Getters and Setters
@@ -98,6 +98,15 @@ public class User {
     public void setInvoices(List<Invoice> invoices) {
         this.invoices = invoices;
     }
+
+    public List<Car_Ownership> getOwnedCars() {
+        return ownedCars;
+    }
+
+    public void setOwnedCars(List<Car_Ownership> ownedCars) {
+        this.ownedCars = ownedCars;
+    }
+
     //endregion
 
     @Override

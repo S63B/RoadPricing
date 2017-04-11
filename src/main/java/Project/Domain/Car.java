@@ -11,7 +11,6 @@ public class Car {
 	private LicensePlate licensePlate;
 	private Rate rate;
 	private EnergyLabel energyLabel;
-	private IdentificationMethod identificationMethod;
 	private boolean isStolen;
 
 	//region Getters and Setters
@@ -54,14 +53,6 @@ public class Car {
 
 	public void setEnergyLabel(EnergyLabel energyLabel) {
 		this.energyLabel = energyLabel;
-	}
-
-	public IdentificationMethod getIdentificationMethod() {
-		return identificationMethod;
-	}
-
-	public void setIdentificationMethod(IdentificationMethod identificationMethod) {
-		this.identificationMethod = identificationMethod;
 	}
 
 	//endregion

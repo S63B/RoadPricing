@@ -1,7 +1,5 @@
 package Project.Domain;
 
-import com.google.maps.model.LatLng;
-
 import java.time.LocalDate;
 
 /**
@@ -9,6 +7,8 @@ import java.time.LocalDate;
  */
 public class Pol {
 	private int id;
-	private LatLng latLng;
+	private Tracker tracker;
+	private double latitude;
+	private double longitude;
 	private LocalDate date;
 }

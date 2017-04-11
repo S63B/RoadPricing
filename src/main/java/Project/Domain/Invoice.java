@@ -14,7 +14,6 @@ public class Invoice {
     private LocalDate startDate;
     private LocalDate endDate;
     private int paymentStatus;
-    private Tracker tracker;
     private String country;
 
 
@@ -78,14 +77,6 @@ public class Invoice {
 
     public void setPaymentStatus(int paymentStatus) {
         this.paymentStatus = paymentStatus;
-    }
-
-    public Tracker getTracker() {
-        return tracker;
-    }
-
-    public void setTracker(Tracker tracker) {
-        this.tracker = tracker;
     }
 
     public String getCountry() {
