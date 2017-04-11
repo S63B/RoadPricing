@@ -1,6 +1,9 @@
 package Project.Rest;
 
+import Project.Domain.Invoice;
+import Project.Domain.User;
 import Project.Pdf.PdfGenerator;
+import org.joda.time.DateTime;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.InputStreamResource;
@@ -32,10 +35,15 @@ public class PdfRest {
 	@RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/pdf")
 	public ResponseEntity<InputStreamResource> downloadPDFFile()
 			throws IOException {
+		User user = new User(1, "Tim Daniëls", "Kerkstraat 5", "Casteren", false, "Admin", true);
+		Invoice invoice = new Invoice(1, user, new DateTime(), 200.12, new DateTime(), new DateTime(), 0, "NL");
+
+
+
 		String fileName = "factuur.pdf";
 
 		PdfGenerator generator = new PdfGenerator();
-		generator.GenerateInvoicePdf();
+		generator.GenerateInvoicePdf(invoice);
 
 		FileSystemResource fileSystemResource = new FileSystemResource("E:\\School\\S63B\\RoadPricing\\RoadPricing\\factuur.pdf");
 

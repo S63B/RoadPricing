@@ -23,6 +23,17 @@ public class Invoice {
 
     }
 
+    public Invoice(int id, User user, DateTime date, double totalPrice, DateTime startDate, DateTime endDate, int paymentStatus, String countryOfOrigin) {
+        this.id = id;
+        this.user = user;
+        this.date = date;
+        this.totalPrice = totalPrice;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.paymentStatus = paymentStatus;
+        this.countryOfOrigin = countryOfOrigin;
+    }
+
     //region Getters and Setters
 
     public int getId() {
