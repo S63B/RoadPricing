@@ -14,7 +14,7 @@ public class Invoice {
     private LocalDate startDate;
     private LocalDate endDate;
     private int paymentStatus;
-    private String country;
+    private String countryOfOrigin;
 
 
     public Invoice() {
@@ -79,12 +79,12 @@ public class Invoice {
         this.paymentStatus = paymentStatus;
     }
 
-    public String getCountry() {
-        return country;
+    public String getCountryOfOrigin() {
+        return countryOfOrigin;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setCountryOfOrigin(String countryOfOrigin) {
+        this.countryOfOrigin = countryOfOrigin;
     }
 
     //endregion
