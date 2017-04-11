@@ -1,9 +1,5 @@
 package Project.Domain;
 
-import Project.Domain.Enums.EnergyLabel;
-import Project.Domain.Enums.Hardware;
-import Project.Domain.Enums.IdentificationMethod;
-
 import java.util.ArrayList;
 import java.util.List;
 

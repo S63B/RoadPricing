@@ -1,5 +1,8 @@
 package Project.Domain;
 
+import Project.Domain.Enums.EnergyLabel;
+import Project.Domain.Enums.IdentificationMethod;
+
 /**
  * Created by Nekkyou on 11-4-2017.
  */
@@ -7,7 +10,8 @@ public class Car {
 	private int id;
 	private LicensePlate licensePlate;
 	private Rate rate;
-	private char energyLabel;
+	private EnergyLabel energyLabel;
+	private IdentificationMethod identificationMethod;
 	private boolean isStolen;
 
 	//region Getters and Setters
@@ -36,20 +40,28 @@ public class Car {
 		this.rate = rate;
 	}
 
-	public char getEnergyLabel() {
-		return energyLabel;
-	}
-
-	public void setEnergyLabel(char energyLabel) {
-		this.energyLabel = energyLabel;
-	}
-
 	public boolean isStolen() {
 		return isStolen;
 	}
 
 	public void setStolen(boolean stolen) {
 		isStolen = stolen;
+	}
+
+	public EnergyLabel getEnergyLabel() {
+		return energyLabel;
+	}
+
+	public void setEnergyLabel(EnergyLabel energyLabel) {
+		this.energyLabel = energyLabel;
+	}
+
+	public IdentificationMethod getIdentificationMethod() {
+		return identificationMethod;
+	}
+
+	public void setIdentificationMethod(IdentificationMethod identificationMethod) {
+		this.identificationMethod = identificationMethod;
 	}
 
 	//endregion
