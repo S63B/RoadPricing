@@ -28,6 +28,7 @@
     transition: 0.8s;
     -webkit-transition:  0.8s;
 }
-.lang-select{
-    margin-top: 7px;
+
+#language-select {
+    line-height: 50px;
 }

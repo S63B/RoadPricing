@@ -1,12 +1,12 @@
 <div class="panel panel-default">
   <!-- Default panel contents -->
-  <div class="panel-heading">Rides</div>
+  <div class="panel-heading">{{ 'RIDES.HEADER' | translate }}</div>
   <!-- Table -->
   <table class="table table-hover">
     <thead>
       <tr>
-        <th>Time</th>
-        <th>Distance</th>
+        <th>{{ 'RIDES.TIME' | translate }}</th>
+        <th>{{ 'RIDES.DISTANCE' | translate }}</th>
       </tr>
     </thead>
     <tr *ngFor="let ride of rides" id="cards" onclick="getElementById('edit-1').click()">

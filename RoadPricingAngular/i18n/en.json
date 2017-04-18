@@ -1,0 +1,29 @@
+{
+  "HEADER": {
+    "TITLE": "Road pricing",
+    "HOME": "Home",
+    "PROFILE": "Profile",
+    "SELECT_LANGUAGE": "Change language"
+  },
+  "RIDES": {
+    "HEADER": "Rides",
+    "TIME": "Time",
+    "DISTANCE": "Distance"
+  },
+  "INVOICES": {
+    "HEADER": "Invoices",
+    "DATE": "Date",
+    "TOTAL_PRICE": "Total price",
+    "PAYMENT_STATUS": "Payment status"
+  },
+  "INVOICE": {
+    "HEADER": "Invoice",
+    "PAY_INVOICE": "Pay invoice",
+    "DOWNLOAD_PDF": "Download invoice",
+    "DATE": "Date",
+    "TOTAL_PRICE": "Total price",
+    "PAYMENT_STATUS": "Payment status",
+    "COUNTRY_OF_ORIGIN": "Country of origin",
+    "PERIOD": "Period"
+  }
+}
