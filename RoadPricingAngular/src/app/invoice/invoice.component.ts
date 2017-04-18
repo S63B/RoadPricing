@@ -14,7 +14,7 @@ export class InvoiceComponent implements OnInit {
 
   constructor() {
     this.invoice = new Invoice(1, new User(), new Date(), 500.00, new Date('03-01-2017'), new Date('03-31-2017'), 10, 'Nederland');
-   }
+  }
 
   ngOnInit() {
   }

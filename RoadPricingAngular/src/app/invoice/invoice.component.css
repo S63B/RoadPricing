@@ -1,0 +1,11 @@
+#invoiceHeader {
+    margin: 10px 0px;
+}
+
+#invoiceHeader h2 {
+    margin: 0px;
+}
+
+#invoiceInfo dt {
+    text-align: left;
+}
