@@ -10,5 +10,8 @@ export class AppComponent {
   title = 'app works!';
 
   constructor(private translate: TranslateService) {
+    translate.addLangs(['EN', 'NL']);
+    translate.setDefaultLang('NL');
+    translate.use('NL');
   }
 }
