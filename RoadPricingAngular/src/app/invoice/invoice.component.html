@@ -2,25 +2,27 @@
 <div class="container">
   <div class="col-md-8 col-md-offset-2">
     <div class="row" id="invoiceHeader">
-      <div class="col-md-8">
-        <h2>Invoice {{invoice?.id}}</h2>
+      <div class="col-md-6">
+        <h2>{{ 'INVOICE.HEADER' | translate }} {{invoice?.id}}</h2>
       </div>
-      <div class="col-md-4 btn btn-group">
-        <button type="button" class="btn btn-primary">Pay invoice</button>
-        <button type="button" class="btn btn-default">Download .pdf</button>
+      <div class="col-md-6">
+        <div class="btn btn-group pull-right">
+          <button type="button" class="btn btn-primary">{{ 'INVOICE.PAY_INVOICE' | translate }}</button>
+          <button type="button" class="btn btn-default">{{ 'INVOICE.DOWNLOAD_PDF' | translate }}</button>
+        </div>
       </div>
     </div>
     <div class="row">
       <dl class="dl-horizontal" id="invoiceInfo">
-        <dt>Date:</dt>
+        <dt>{{ 'INVOICE.DATE' | translate }}</dt>
         <dd>{{invoice?.date.toDateString()}}</dd>
-        <dt>Total price:</dt>
+        <dt>{{ 'INVOICE.TOTAL_PRICE' | translate }}</dt>
         <dd>{{invoice?.totalPrice}}</dd>
-        <dt>Country of origin:</dt>
+        <dt>{{ 'INVOICE.COUNTRY_OF_ORIGIN' | translate }}</dt>
         <dd>{{invoice?.countryOfOrigin}}</dd>
-        <dt>Payment status:</dt>
+        <dt>{{ 'INVOICE.PAYMENT_STATUS' | translate }}</dt>
         <dd>{{invoice?.paymentStatus}}</dd>
-        <dt>Period from:</dt>
+        <dt>{{ 'INVOICE.PERIOD' | translate }}</dt>
         <dd>{{invoice?.startDate.toDateString()}} to {{invoice?.endDate.toDateString()}}</dd>
       </dl>
     </div>
