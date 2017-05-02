@@ -18,6 +18,9 @@ import { RideService } from "app/ride.service";
 import { InvoiceService } from "app/invoice.service";
 import { DistancePipe } from './distance.pipe';
 import { RideComponent } from './ride/ride.component';
+import { ProfileComponent } from './profile/profile.component';
+import { CarComponent } from './car/car.component';
+import { CarService } from "app/car.service";
 
 @NgModule({
   declarations: [
@@ -29,7 +32,9 @@ import { RideComponent } from './ride/ride.component';
     RidesComponent,
     InvoicesComponent,
     DistancePipe,
-    RideComponent
+    RideComponent,
+    ProfileComponent,
+    CarComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +47,8 @@ import { RideComponent } from './ride/ride.component';
     HttpService,
     HttpModule,
     RideService,
-    InvoiceService
+    InvoiceService,
+    CarService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,17 @@
+.form-group input, .form-group select {
+    max-width: 50%;
+}
+
+#owned-cars-panel {
+    margin-top: 20px;
+}
+
+#owned-cars-panel .panel-heading  h3 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#add-first-car {
+    display: block;
+    margin-top: 5px;
+}

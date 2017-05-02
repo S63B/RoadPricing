@@ -1,0 +1,40 @@
+<app-header></app-header>
+<div class="container">
+  <div class="col-xs-12 col-md-8">
+    <h1>{{ 'PROFILE.TITLE' | translate }}</h1>
+    <form #userForm="ngForm">
+      <div class="form-group">
+        <label for="name">{{ 'PROFILE.NAME_LABEL' | translate }}</label>
+        <input [(ngModel)]="user.name" id="name" type="text" class="form-control input-sm" name="name" required/>
+      </div>
+      <div class="form-group">
+        <label for="address">{{ 'PROFILE.ADDRESS_LABEL' | translate }}</label>
+        <input [(ngModel)]="user.address" id="address" type="text" class="form-control input-sm" name="address" required/>
+      </div>
+      <div class="form-group">
+        <label for="residence">{{ 'PROFILE.RESIDENCE_LABEL' | translate }}</label>
+        <input [(ngModel)]="user.residence" id="residence" type="text" class="form-control input-sm" name="residence" required/>
+      </div>
+      <button (click)="saveUserInfo()" type="submit" class="btn btn-primary" [disabled]="!userForm.valid" >{{ 'GLOBAL.SUBMIT_BUTTON' | translate }}</button>
+    </form>
+  </div>
+  <div class="col-xs-12 col-md-4" id="owned-cars-panel">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>{{ 'PROFILE.CAR_OWNERSHIP_TITLE' | translate }}</h3>
+      </div>
+      <div class="panel-body">
+        <div *ngIf="user.cars.length > 0; else noCars">
+          <div *ngFor="let car of user.cars" class="owned-car">
+            <span>{{car.name}}</span> <a routerLink="/car/{{car.id}}">Edit</a>
+          </div>
+        </div>
+        <ng-template #noCars>
+          {{ 'PROFILE.NO_CARS' | translate }}
+          <button type="button" class="btn btn-default" id="add-first-car" routerLink="/car/-1">
+            {{ 'PROFILE.ADD_FIRST_CAR' | translate }}
+          </button>
+        </ng-template>
+    </div>
+  </div>
+</div>
