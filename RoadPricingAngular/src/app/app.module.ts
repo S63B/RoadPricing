@@ -15,6 +15,7 @@ import { InvoicesComponent } from './invoices/invoices.component';
 import { HttpService } from "app/http.service";
 import { RideService } from "app/ride.service";
 import { InvoiceService } from "app/invoice.service";
+import { DistancePipe } from './distance.pipe';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { InvoiceService } from "app/invoice.service";
     InvoiceComponent,
     HomeComponent,
     RidesComponent,
-    InvoicesComponent
+    InvoicesComponent,
+    DistancePipe
   ],
   imports: [
     BrowserModule,

@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     let date = new Date();
-    let currentMilis: number = date.getMilliseconds();
+    let currentMilis: number = Date.now();
     date.setMonth(date.getMonth() - 1);
     let prevMonthMilis: number = date.getMilliseconds();
 
@@ -29,14 +29,9 @@ export class HomeComponent implements OnInit {
   }
 
   public getRidesBetween(startTime: number, endTime: number) {
-    // this.rideService.getRidesBetween('bramdb', startTime, endTime).subscribe(rides => {
-    //   this.rides = rides;
-    // });
-
-    let pol: Pol = new Pol(1, 123, 123, 858568568);
-    this.rides.push(new Ride([pol, pol, pol], 123123, 123123, 123123))
-    this.rides.push(new Ride([pol, pol, pol], 34534, 3453462334, 345345345))
-    this.rides.push(new Ride([pol, pol, pol], 123123, 24234234, 234345345))
+    this.rideService.getRidesBetween('10DRLL', startTime, endTime).subscribe(rides => {
+      this.rides = rides;
+    });
   }
 
 

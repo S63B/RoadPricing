@@ -11,10 +11,10 @@
     </thead>
     <tr *ngFor="let ride of rides" id="cards" onclick="getElementById('edit-1').click()">
       <td>
-        {{ride?.startTime | date: 'hh:mm:ss'}}/{{ride?.endTime | date: 'hh:mm:ss'}} - {{ride?.startTime | date: 'dd MMM'}}
+        {{ride?.startDate | date: 'hh:mm:ss'}}/{{ride?.endDate | date: 'hh:mm:ss'}} - {{ride?.startDate | date: 'dd MMM'}}
       </td>
       <td>
-        {{ride?.getDistanceString()}}
+        {{ride?.distance | distance}}
       </td>
     </tr>
   </table>
