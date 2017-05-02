@@ -9,7 +9,7 @@
         <th>{{ 'RIDES.DISTANCE' | translate }}</th>
       </tr>
     </thead>
-    <tr *ngFor="let ride of rides" id="cards" [routerLink]="['/ride', ride?]">
+    <tr *ngFor="let ride of rides" id="cards">
       <td>
         {{ride?.startDate | date: 'hh:mm:ss'}}/{{ride?.endDate | date: 'hh:mm:ss'}} - {{ride?.startDate | date: 'dd MMM'}}
       </td>
