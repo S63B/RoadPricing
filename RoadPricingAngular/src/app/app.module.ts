@@ -17,6 +17,7 @@ import { HttpService } from "app/http.service";
 import { RideService } from "app/ride.service";
 import { InvoiceService } from "app/invoice.service";
 import { DistancePipe } from './distance.pipe';
+import { RideComponent } from './ride/ride.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { DistancePipe } from './distance.pipe';
     HomeComponent,
     RidesComponent,
     InvoicesComponent,
-    DistancePipe
+    DistancePipe,
+    RideComponent
   ],
   imports: [
     BrowserModule,
