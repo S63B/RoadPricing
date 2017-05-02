@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { TranslateModule } from 'ng2-translate';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -32,7 +33,8 @@ import { DistancePipe } from './distance.pipe';
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing
+    routing,
+    TranslateModule.forRoot()
   ],
   providers: [
     HttpService,

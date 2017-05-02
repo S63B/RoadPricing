@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { RideService } from "app/ride.service";
+
 import { Ride } from "app/ride";
 
 @Component({
