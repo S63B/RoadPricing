@@ -17,7 +17,8 @@ import { HttpService } from "app/http.service";
 import { RideService } from "app/ride.service";
 import { InvoiceService } from "app/invoice.service";
 import { DistancePipe } from './distance.pipe';
-import { RideComponent } from './ride/ride.component';
+import { AgmCoreModule } from 'angular2-google-maps/core';
+import { DirectionsMapDirective } from './directions-map-directive.directive';
 
 @NgModule({
   declarations: [
@@ -29,14 +30,17 @@ import { RideComponent } from './ride/ride.component';
     RidesComponent,
     InvoicesComponent,
     DistancePipe,
-    RideComponent
+    DirectionsMapDirective
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     routing,
-    TranslateModule.forRoot()
+    TranslateModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDNtmOxKdE2VfxAHO6wTdiqRZMoGN_20cc'
+    })
   ],
   providers: [
     HttpService,

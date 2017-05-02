@@ -9,13 +9,33 @@
         <th>{{ 'RIDES.DISTANCE' | translate }}</th>
       </tr>
     </thead>
-    <tr *ngFor="let ride of rides" id="cards" [routerLink]="['/ride', ride?]">
-      <td>
-        {{ride?.startDate | date: 'hh:mm:ss'}}/{{ride?.endDate | date: 'hh:mm:ss'}} - {{ride?.startDate | date: 'dd MMM'}}
-      </td>
-      <td>
-        {{ride?.distance | distance}}
-      </td>
-    </tr>
+    <tbody *ngFor="let ride of rides" id="cards" class="accordion-toggle">
+      <tr>
+        <td>
+          {{ride?.startDate | date: 'hh:mm:ss'}}/{{ride?.endDate | date: 'hh:mm:ss'}} - {{ride?.startDate | date: 'dd MMM'}}
+        </td>
+        <td>
+          {{ride?.distance | distance}}
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <!--<sebm-google-map colspan="2" [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+            <sebm-google-map-marker *ngFor="let pol of ride.pols; let i = index" [latitude]="pol.lat" [longitude]="pol.lng" [label]="i"
+              [markerDraggable]="false">
+
+              <sebm-google-map-info-window>
+                <strong>{{ 'RIDES.TIME' | translate }}: {{pol.date | date: 'hh:mm:ss'}}</strong>
+              </sebm-google-map-info-window>
+
+            </sebm-google-map-marker>
+          </sebm-google-map>-->
+
+          <sebm-google-map>
+            <sebm-google-map-directions [pols]="ride.pols"></sebm-google-map-directions>
+          </sebm-google-map>
+        </td>
+      </tr>
+    </tbody>
   </table>
 </div>

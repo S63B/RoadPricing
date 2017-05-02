@@ -29,9 +29,16 @@ export class HomeComponent implements OnInit {
   }
 
   public getRidesBetween(startTime: number, endTime: number) {
-    this.rideService.getRidesBetween('10DRLL', startTime, endTime).subscribe(rides => {
+    this.rideService.getRidesBetween('DH8132', startTime, endTime).subscribe(rides => {
       this.rides = rides;
     });
+    
+      let pol: Pol = new Pol(1, 52.5, 5.7, 858);
+      let pol2: Pol = new Pol(1, 52.5, 5.8, 858);
+      let pol3: Pol = new Pol(1, 52.5, 5.9, 858);
+      this.rides.push(new Ride([pol, pol2, pol3], 123123, 123123, 123123));
+      this.rides.push(new Ride([pol, pol, pol], 34534, 3453462334, 345345345));
+      this.rides.push(new Ride([pol, pol, pol], 123123, 24234234, 234345345));
   }
 
 
