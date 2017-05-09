@@ -32,3 +32,11 @@
 #language-select {
     line-height: 50px;
 }
+
+.container.navbar-container #language-select-label {
+    color: #000;
+}
+
+.container.navbar-container.fixed-theme #language-select-label {
+    color: #337ab7;
+}

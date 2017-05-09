@@ -20,6 +20,10 @@ import { DistancePipe } from './distance.pipe';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { DirectionsMapDirective } from './directions-map.directive';
 import { MapComponent } from './map/map.component';
+import { ProfileComponent } from './profile/profile.component';
+import { CarComponent } from './car/car.component';
+import { CarService } from "app/car.service";
+import { UserService } from "app/user.service";
 
 @NgModule({
   declarations: [
@@ -31,6 +35,8 @@ import { MapComponent } from './map/map.component';
     RidesComponent,
     InvoicesComponent,
     DistancePipe,
+    ProfileComponent,
+    CarComponent,
     DirectionsMapDirective,
     MapComponent
   ],
@@ -48,7 +54,9 @@ import { MapComponent } from './map/map.component';
     HttpService,
     HttpModule,
     RideService,
-    InvoiceService
+    InvoiceService,
+    CarService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

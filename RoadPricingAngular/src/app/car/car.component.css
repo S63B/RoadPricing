@@ -1,0 +1,7 @@
+.form-group input, .form-group select {
+    max-width: 50%;
+}
+
+.form-group input[type="checkbox"] {
+    display: block;
+}
