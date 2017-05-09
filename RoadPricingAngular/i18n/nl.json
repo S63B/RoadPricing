@@ -1,6 +1,7 @@
 {
   "GLOBAL": {
-    "SUBMIT_BUTTON": "Bevestig"
+    "SUBMIT_BUTTON": "Bevestig",
+    "EDIT_BUTTON": "Bewerk"
   },
   "HEADER": {
     "TITLE": "Rekeningrijden",

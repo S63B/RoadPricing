@@ -17,6 +17,9 @@ import { HttpService } from "app/http.service";
 import { RideService } from "app/ride.service";
 import { InvoiceService } from "app/invoice.service";
 import { DistancePipe } from './distance.pipe';
+import { AgmCoreModule } from 'angular2-google-maps/core';
+import { DirectionsMapDirective } from './directions-map.directive';
+import { MapComponent } from './map/map.component';
 import { RideComponent } from './ride/ride.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CarComponent } from './car/car.component';
@@ -35,13 +38,18 @@ import { CarService } from "app/car.service";
     RideComponent,
     ProfileComponent,
     CarComponent
+    DirectionsMapDirective,
+    MapComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     routing,
-    TranslateModule.forRoot()
+    TranslateModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDNtmOxKdE2VfxAHO6wTdiqRZMoGN_20cc'
+    })
   ],
   providers: [
     HttpService,

@@ -1,6 +1,7 @@
 {
   "GLOBAL": {
-    "SUBMIT_BUTTON": "Submit"
+    "SUBMIT_BUTTON": "Submit",
+    "EDIT_BUTTON": "Edit"
   },
   "HEADER": {
     "TITLE": "Road pricing",

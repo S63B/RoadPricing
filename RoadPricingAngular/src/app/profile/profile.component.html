@@ -26,7 +26,10 @@
       <div class="panel-body">
         <div *ngIf="user.cars.length > 0; else noCars">
           <div *ngFor="let car of user.cars" class="owned-car">
-            <span>{{car.name}}</span> <a routerLink="/car/{{car.id}}">Edit</a>
+            <span>{{car.name}}</span> 
+            <a class="btn btn-default btn-sm pull-right" routerLink="/car/{{car.id}}" data-toggle="tooltip" data-placement="bottom" data-title="{{ 'GLOBAL.EDIT_BUTTON' | translate }}">
+              <i class="fa fa-pencil"></i>
+            </a>
           </div>
         </div>
         <ng-template #noCars>
