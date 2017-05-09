@@ -1,10 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Headers, Response, Http } from '@angular/http';
 
 @Injectable()
 export class HttpService {
 
   constructor(private http: Http) {
+  }
+
+  public extractData(res: Response) {
+    let body = res.text();
+    return JSON.parse(body).entity || {};
   }
 
   public get(url) {

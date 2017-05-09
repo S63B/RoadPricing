@@ -8,13 +8,21 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-            <a id="brand" class="navbar-brand" href="#">Road pricing</a>
+            <a id="brand" class="navbar-brand" href="#">{{ 'HEADER.TITLE' | translate }}</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a routerLink="">Home</a></li>
-                <li><a routerLink="profile">Profiel</a></li>
+                <li class="active"><a routerLink="">{{ 'HEADER.HOME' | translate }}</a></li>
+                <li><a routerLink="/profile/3">{{ 'HEADER.PROFILE' | translate }}</a></li>
             </ul>
+            <div id="language-select">
+                <label>
+                    <span id="language-select-label">{{ 'HEADER.SELECT_LANGUAGE' | translate }}</span>
+                    <select #langSelect (change)="translate.use(langSelect.value)">
+                        <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
+                    </select>
+                </label>
+            </div>
         </div>
     </div>
 </nav>
