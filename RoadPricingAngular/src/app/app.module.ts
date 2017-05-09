@@ -18,7 +18,8 @@ import { RideService } from "app/ride.service";
 import { InvoiceService } from "app/invoice.service";
 import { DistancePipe } from './distance.pipe';
 import { AgmCoreModule } from 'angular2-google-maps/core';
-import { DirectionsMapDirective } from './directions-map-directive.directive';
+import { DirectionsMapDirective } from './directions-map.directive';
+import { MapComponent } from './map/map.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { DirectionsMapDirective } from './directions-map-directive.directive';
     RidesComponent,
     InvoicesComponent,
     DistancePipe,
-    DirectionsMapDirective
+    DirectionsMapDirective,
+    MapComponent
   ],
   imports: [
     BrowserModule,
