@@ -1,7 +1,8 @@
 {
   "GLOBAL": {
     "SUBMIT_BUTTON": "Bevestig",
-    "EDIT_BUTTON": "Bewerk"
+    "EDIT_BUTTON": "Bewerk",
+    "UPDATE_BUTTON": "Update"
   },
   "HEADER": {
     "TITLE": "Rekeningrijden",
@@ -37,7 +38,10 @@
     "RESIDENCE_LABEL": "Woonplaats",
     "CAR_OWNERSHIP_TITLE": "Uw auto's",
     "NO_CARS": "U heeft nog geen auto's toegevoegd!",
-    "ADD_FIRST_CAR": "Voeg uw eerste auto toe"
+    "ADD_FIRST_CAR": "Voeg uw eerste auto toe",
+    "UPDATE_PASSWORD_TITLE": "Update wachtwoord",
+    "NEW_PASSWORD": "Nieuw wachtwoord",
+    "CONFIRM_PASSWORD": "Bevestig wachtwoord"
   },
   "CAR": {
     "NEW_TITLE": "Nieuwe auto",

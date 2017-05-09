@@ -6,8 +6,11 @@
     margin-top: 20px;
 }
 
-#owned-cars-panel .panel-heading  h3 {
+#owned-cars-panel .panel-heading  h3, #update-password-title {
     margin-top: 0px;
+}
+
+#owned-cars-panel .panel-heading  h3 {
     margin-bottom: 0px;
 }
 

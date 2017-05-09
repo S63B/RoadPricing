@@ -1,7 +1,8 @@
 {
   "GLOBAL": {
     "SUBMIT_BUTTON": "Submit",
-    "EDIT_BUTTON": "Edit"
+    "EDIT_BUTTON": "Edit",
+    "UPDATE_BUTTON": "Update"
   },
   "HEADER": {
     "TITLE": "Road pricing",
@@ -37,7 +38,10 @@
     "RESIDENCE_LABEL": "Residence",
     "CAR_OWNERSHIP_TITLE": "Your cars",
     "NO_CARS": "You haven't added any cars yet!",
-    "ADD_FIRST_CAR": "Add first car"
+    "ADD_FIRST_CAR": "Add first car",
+    "UPDATE_PASSWORD_TITLE": "Update password",
+    "NEW_PASSWORD": "New password",
+    "CONFIRM_PASSWORD": "Confirm password"
   },
   "CAR": {
     "NEW_TITLE": "New car",

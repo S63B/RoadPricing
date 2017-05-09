@@ -9,7 +9,7 @@ body {
     cursor: pointer;
 }
 
-.ng-valid[required], .nq-valid.required {
+.ng-valid[required], .nq-valid.required, [required][ng-reflect-is-disabled] {
     border-left: 5px solid #42A948;
 }
 

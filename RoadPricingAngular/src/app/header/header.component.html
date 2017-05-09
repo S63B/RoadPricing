@@ -13,11 +13,11 @@
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a routerLink="">{{ 'HEADER.HOME' | translate }}</a></li>
-                <li><a routerLink="/profile/1">{{ 'HEADER.PROFILE' | translate }}</a></li>
+                <li><a routerLink="/profile/3">{{ 'HEADER.PROFILE' | translate }}</a></li>
             </ul>
             <div id="language-select">
                 <label>
-                    {{ 'HEADER.SELECT_LANGUAGE' | translate }}
+                    <span id="language-select-label">{{ 'HEADER.SELECT_LANGUAGE' | translate }}</span>
                     <select #langSelect (change)="translate.use(langSelect.value)">
                         <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
                     </select>
