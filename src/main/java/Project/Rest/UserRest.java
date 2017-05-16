@@ -10,6 +10,7 @@ import javax.ws.rs.core.Response;
 
 import java.util.Collections;
 
+import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
 import static javax.ws.rs.core.Response.Status.OK;
 
 /**
@@ -28,7 +29,7 @@ public class UserRest {
      * @param id The ID of a owner (user).
      * @return A response object containing all personal information of a owner (user).
      */
-    @RequestMapping(value = "/info", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public Response getUserInfo(@RequestParam(value = "id") int id) {
         Object result = null;
         Owner owner = ownerService.getById(id);
@@ -39,17 +40,15 @@ public class UserRest {
         }
         return Response.status(OK).entity(result).build();
     }
-
+    
     @RequestMapping(value = "/info", method = RequestMethod.POST)
     public Response update(@RequestParam(value = "id") int id,
                            @RequestParam(value = "address") String address,
                            @RequestParam(value = "residence") String residence) {
-        Response.Status responseStatus = null;
         if (ownerService.update(id, address, residence)) {
-            responseStatus = Response.Status.OK;
+            return Response.status(OK).entity(true).build();
         } else {
-            responseStatus = Response.Status.BAD_REQUEST;
+            return Response.status(BAD_REQUEST).entity(false).build();
         }
-        return Response.status(responseStatus).build();
     }
 }
