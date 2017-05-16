@@ -18,7 +18,7 @@ export class UserService {
    */
   getUserInfo(id: number): Observable<any> {
     return this.httpService
-      .get(`${API_URL_LOCALHOST}/user/info?id=${id}`)
+      .get(`${API_URL_LOCALHOST}/user?id=${id}`)
       .map(this.httpService.extractData);
   }
 
@@ -33,7 +33,7 @@ export class UserService {
   update(id: number, address: string, residence: string): Observable<any> {
     return this.httpService
       .post(`${API_URL_LOCALHOST}/user/info?id=${id}&address=${address}&residence=${residence}`)
-      .map(response => response.json());
+      .map(this.httpService.extractData);
   }
 
 }

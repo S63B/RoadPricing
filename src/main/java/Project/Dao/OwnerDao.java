@@ -1,5 +1,6 @@
 package Project.Dao;
 
+import com.S63B.domain.Entities.Invoice;
 import com.S63B.domain.Entities.Owner;
 import org.springframework.stereotype.Repository;
 
@@ -51,7 +52,7 @@ public class OwnerDao implements IDaoFacade, IOwnerDao {
     @Override
     public Owner getById(int id) {
         Owner owner = null;
-        Query query = em.createQuery("SELECT o FROM Owner o WHERE o.id = :id").setParameter("id", id);
+        Query query = em.createNamedQuery("Owner.getById", Owner.class).setParameter("id", id);
         try {
             owner = (Owner) query.getSingleResult();
             em.refresh(owner);
@@ -71,12 +72,15 @@ public class OwnerDao implements IDaoFacade, IOwnerDao {
      */
     @Override
     public boolean update(int id, String address, String residence) {
-        Query query = em.createQuery("UPDATE Owner SET address = :address, residence = :residence WHERE id = :id").setParameter("address", address).setParameter("residence", residence).setParameter("id", id);
         boolean result = false;
         try {
-            System.out.println(id + " " + address + " " + residence);
+            Query query = em.createNamedQuery("Owner.getById", Owner.class).setParameter("id", id);
+            Owner owner = (Owner) query.getSingleResult();
+            em.refresh(owner);
+            owner.setAddress(address);
+            owner.setResidence(residence);
             em.getTransaction().begin();
-            query.executeUpdate();
+            em.merge(owner);
             result = true;
         } catch (Exception e) {
             e.printStackTrace();

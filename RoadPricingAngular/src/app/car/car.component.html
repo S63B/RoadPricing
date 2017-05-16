@@ -2,18 +2,25 @@
 <div class="container">
   <h1>{{ (isNewCar ? 'CAR.NEW_TITLE' : 'CAR.UPDATE_TITLE') | translate }}</h1>
   <form #carForm="ngForm" class="col-md-8">
-    <div class="form-group">
+    <!--<div class="form-group">
       <label for="manufacturer">{{ 'CAR.MANUFACTURER_LABEL' | translate }}</label>
       <input [(ngModel)]="car.manufacturer" id="manufacturer" type="text" class="form-control input-sm" name="manufacturer" required/>
     </div>
     <div class="form-group">
       <label for="model">{{ 'CAR.MODEL_LABEL' | translate }}</label>
       <input [(ngModel)]="car.model" id="model" type="text" class="form-control input-sm" name="model" required/>
-    </div>
+    </div>-->
     <div class="form-group">
       <label for="license-plate">{{ 'CAR.LICENSE_PLATE_LABEL' | translate }}</label>
       <input [(ngModel)]="car.licensePlate.license" id="license-plate" type="text" class="form-control input-sm" name="license-plate" required/>
-      <!-- NL license plate regex -->
+    </div>
+    <div class="form-group">
+      <label for="license-plate-expiration-date">{{ 'CAR.LICENSE_PLATE_EXPIRATION_DATE_LABEL' | translate }}</label>
+      <input [(ngModel)]="car.licensePlate.expirationDate" id="license-plate-expiration-date" type="text" class="form-control input-sm" name="license-plate-expiration-date" placeholder="DD-MM-YYYY" required/>
+    </div>
+    <div class="form-group">
+      <label for="car-purchase-date">{{ 'CAR.PURCHASE_DATE_LABEL' | translate }}</label>
+      <input [(ngModel)]="car.ownership.purchaseDate" id="car-purchase-date" type="text" class="form-control input-sm" name="car-purchase-date" placeholder="DD-MM-YYYY" required/>
     </div>
     <div class="form-group">
       <label for="energy-label">{{ 'CAR.ENERGY_LABEL' | translate }}</label>
@@ -25,11 +32,11 @@
     </div>
     <div *ngIf="!isNewCar" class="form-group">
       <label for="is-stolen">{{ 'CAR.STOLEN_LABEL' | translate }}</label>
-      <input [(ngModel)]="car.isStolen" type="checkbox" name="is-stolen"/>
+      <input [ngModel]="car.isStolen" type="checkbox" name="is-stolen" disabled/>
     </div>
     <div *ngIf="!isNewCar" class="form-group">
       <label for="car-tracker">{{ 'CAR.TRACKER_LABEL' | translate }}</label>
-      <input [(ngModel)]="car.tracker.id" id="car-tracker" type="text" class="form-control input-sm" name="car-tracker"/>
+      <input [(ngModel)]="car.tracker.id" id="car-tracker" type="text" class="form-control input-sm" name="car-tracker" required/>
     </div>
     <button (click)="saveCarInformation()" type="submit" class="btn btn-primary" [disabled]="!carForm.valid">{{ 'GLOBAL.SUBMIT_BUTTON' | translate }}</button>
   </form>

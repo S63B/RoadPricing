@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from "app/http.service";
-import { API_URL } from "app/constants";
+import { API_URL, API_URL_LOCALHOST } from "app/constants";
 
 @Injectable()
 export class CarService {
@@ -13,12 +13,19 @@ export class CarService {
    * 
    * @param {number} carId The identifier of a car.
    * @returns {Car} A car object containing all information of a car.
-   * 
-   * @memberOf CarService
    */
-  getCarInformation(carId: number) {
+  getById(carId: number) {
     return this.httpService.get(`${API_URL}/car?carId=${carId}`)
       .map(this.httpService.extractData);
   }
 
+  create(userId: number, licenseplate: string, energyLabel: string) {
+    return this.httpService.post(`${API_URL_LOCALHOST}/car?userId=${userId}&licensePlate=${licenseplate}&energyLabel=${energyLabel}`)
+      .map(this.httpService.extractData);
+  }
+
+  update(carId: number, licenseplate: string, energyLabel: string, trackerId: number) {
+    return this.httpService.post(`${API_URL_LOCALHOST}/car?carId=${carId}&licensePlate=${licenseplate}&energyLabel=${energyLabel}&trackerid=${trackerId}`)
+      .map(this.httpService.extractData);
+  }
 }

@@ -17,6 +17,14 @@ public class OwnerService {
         return ownerDao.getById(id);
     }
 
+    /**
+     * Updates a owners (user) address and residence information.
+     *
+     * @param id The id of the owner (user);
+     * @param address The address of the owner (user);
+     * @param residence The residence of the owner (user);
+     * @return Whether the operation has succeeded.
+     */
     public boolean update(int id, String address, String residence) {
         return ownerDao.update(id, address, residence);
     }

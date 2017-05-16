@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { CarService } from "app/car.service";
 
@@ -8,22 +8,20 @@ import { CarService } from "app/car.service";
   styleUrls: ['./car.component.css']
 })
 export class CarComponent implements OnInit {
-  private isNewCar: boolean = true;
-  private car: object = {
-    id: -1,
-    manufacturer: "Tesla",
-    model: "Model X",
+  private userId: number;
+  private isNewCar: boolean;
+  private car = {
+    id: 0,
+    purchaseDate: '',
     licensePlate: {
-      id: -1,
-      license: "AA-123-B",
-      expirationDate: new Date()
+      license: '',
+      expirationDate: ''
     },
-    energyLabel: "A",
-    isStolen: false,
+    energyLabel: '',
     tracker: {
-      id: undefined
+      id: 0
     }
-  }
+  };
   private energyLabels: string[] = [ "A", "B", "C", "D", "E", "F" ];
 
   constructor(
@@ -33,11 +31,19 @@ export class CarComponent implements OnInit {
   }
 
   ngOnInit() {
-    // If no valid carId has been sent as a parameter, the page should display different controls to insert a new car.
     this.route.params.subscribe(parameters => {
-      if (parameters['carId'] && Number(parameters['carId']) !== -1) {
-        this.getCarInformation(parameters['carId']);
+      const carId: number = Number(parameters['carId']);
+      // If the car Id is a number and equal to -1, a new car should be created.
+      if (!isNaN(carId) && carId === -1) {
+        this.isNewCar = true;
+      } else {
         this.isNewCar = false;
+        this.getCarInformation(parameters['carId']);
+      }
+
+      const userId: number = Number(parameters['userId']);
+      if (typeof userId !== 'undefined') {
+        this.userId = userId;
       }
     });
   }
@@ -46,17 +52,29 @@ export class CarComponent implements OnInit {
    * Gets all information of a car with the given id.
    * 
    * @param {number} carId The identifier of a car.
-   * 
-   * @memberOf CarComponent
    */
   getCarInformation(carId: number) {
-    // this.car = this.carService.getCarInformation(carId);
+    this.carService.getById(carId).subscribe(foundCar => {
+      this.car = foundCar;
+    });
   }
 
   /**
    * Saves all info of a new or already existing car using the submitted input from the form.
    */
   saveCarInformation() {
-    console.log("Test on click save car information");
+    if (this.isNewCar) {
+      this.createNewCar(this.userId, this.car.licensePlate.license, this.car.energyLabel);
+    } else {
+      this.updateCar(this.car.id, this.car.licensePlate.license, this.car.energyLabel, this.car.tracker.id);
+    }
+  }
+
+  createNewCar(userId: number, licenseplate: string, energyLabel: string) {
+    this.carService.create(userId, licenseplate, energyLabel);
+  }
+
+  updateCar(carId: number, licenseplate: string, energyLabel: string, trackerId: number) {
+    this.carService.update(carId, licenseplate, energyLabel, trackerId);
   }
 }

@@ -9,17 +9,17 @@ import { User } from "app/user";
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  private userID: number;
+  private userId: number;
   private user: User = new User();
 
   constructor(private userService: UserService, private route: ActivatedRoute) {
     this.route.params.subscribe(parameters => {
-      this.userID = parameters['userId'];
+      this.userId = parameters['userId'];
     });
    }
 
   ngOnInit() {
-    this.getUserInfo(this.userID);
+    this.getUserInfo(this.userId);
   }
 
   /**
@@ -28,11 +28,9 @@ export class ProfileComponent implements OnInit {
    * @param {number} userID The id of the user of which all info should be retrieved.
    */
   getUserInfo(userID: number) {
-    this.userService.getUserInfo(userID).subscribe(response => {
-      if (typeof response !== "string") {
-        this.user = response as User;
-        this.user["cars"] = [ { name: "Tesla", model: "Model X" }];
-        console.log(this.user);
+    this.userService.getUserInfo(userID).subscribe(foundUser => {
+      if (typeof foundUser === "object") {
+        this.user = foundUser as User;
       }
     });
   }
@@ -41,9 +39,10 @@ export class ProfileComponent implements OnInit {
    * Saves the current users info.
    */
   saveUserInfo() {
-    this.userService.update(this.user.id, this.user.address, this.user.residence).subscribe(response => {
-      location.reload();
-      // Show success message
+    this.userService.update(this.user.id, this.user.address, this.user.residence).subscribe(updateSucceeded => {
+      if (updateSucceeded) {
+        this.getUserInfo(this.userId);
+      }
     });
   }
 

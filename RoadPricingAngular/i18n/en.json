@@ -48,7 +48,9 @@
     "UPDATE_TITLE": "Update car data",
     "MANUFACTURER_LABEL": "Manufacturer",
     "MODEL_LABEL": "Model",
+    "PURCHASE_DATE_LABEL": "Purchase date",
     "LICENSE_PLATE_LABEL": "License plate",
+    "LICENSE_PLATE_EXPIRATION_DATE_LABEL": "License plate expiration date",
     "ENERGY_LABEL": "Energy label",
     "STOLEN_LABEL": "Has the car been stolen?",
     "TRACKER_LABEL": "Car tracker identifier"
