@@ -1,6 +1,9 @@
 export class User {
-    id: number = 0;
-    name: string = '';
-    address: string = '';
-    residence: string = '';
+      constructor(
+        public id?: number,
+        public name?: string ,
+        public address?: string,
+        public residence?: string) {
+    }
+
 }

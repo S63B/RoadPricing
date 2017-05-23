@@ -12,13 +12,16 @@
     </thead>
     <tr *ngFor="let invoice of invoices" id="cards">
       <td>
-        {{invoice?.date | date: 'dd MMM yyyy'}}
+        {{invoice?.date | jodatime}}
       </td>
       <td>
         {{invoice?.totalPrice}}
       </td>
       <td>
         {{invoice?.paymentStatus}}
+      </td>
+      <td>
+        <a href="`http://localhost:8080/download?file={{invoice?.owner?.id}}" target="_blank">Download</a>
       </td>
     </tr>
   </table>

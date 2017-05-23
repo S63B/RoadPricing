@@ -38,7 +38,7 @@
         <dependency>
             <groupId>com.github.S63B</groupId>
             <artifactId>Domain</artifactId>
-            <version>00c8a89419</version>
+            <version>98c9121db9</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -94,7 +94,19 @@
             <artifactId>commons-io</artifactId>
             <version>2.5</version>
         </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security.oauth</groupId>
+            <artifactId>spring-security-oauth2</artifactId>
+        </dependency>
     </dependencies>
+
 
     <build>
         <plugins>
