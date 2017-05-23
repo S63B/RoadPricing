@@ -34,7 +34,7 @@
         </div>
         <ng-template #noCars>
           {{ 'PROFILE.NO_CARS' | translate }}
-          <button type="button" class="btn btn-default" id="add-first-car" routerLink="/car/-1">
+          <button type="button" class="btn btn-default" id="add-first-car" routerLink="/car/{{userId}}/-1">
             {{ 'PROFILE.ADD_FIRST_CAR' | translate }}
           </button>
         </ng-template>

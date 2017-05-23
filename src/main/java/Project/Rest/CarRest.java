@@ -1,66 +1,86 @@
 package Project.Rest;
 
+import Project.Services.CarManagementService;
 import Project.Services.CarService;
 import Project.Services.OwnerService;
 import com.S63B.domain.Entities.Car;
-import com.S63B.domain.Entities.Owner;
-import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import javax.ws.rs.core.Response;
-
-import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
-import static javax.ws.rs.core.Response.Status.OK;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by Nino Vrijman on 16-5-2017.
  */
 @RestController
 @RequestMapping("/car")
+@CrossOrigin(origins = "*")
 @Controller
 public class CarRest {
-    @Autowired
-    private CarService carService;
-    @Autowired
-    private OwnerService ownerService;
+    private final CarService carService;
+    private final OwnerService ownerService;
+    private CarManagementService carManagementService;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public Response getById(@RequestParam(value = "id") int id) {
+    @Autowired
+    public CarRest(CarService carService, OwnerService ownerService, CarManagementService carManagementService) {
+        this.carService = carService;
+        this.ownerService = ownerService;
+        this.carManagementService = carManagementService;
+    }
+
+    /**
+     * Gets a car based on it's id.
+     * @param id The id of the car.
+     * @return A ResponseEntity containing the car with the given id.
+     */
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public ResponseEntity<Car> getById(@RequestParam(value = "id") int id) {
         Car car = carService.getById(id);
-        return Response.status(OK).entity(car).build();
+        HttpStatus status = car == null ? HttpStatus.BAD_REQUEST : HttpStatus.OK;
+        return new ResponseEntity<>(car, status);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public Response create( @RequestParam(value = "userId") int userId,
-                            @RequestParam(value = "licensePlate") String licensePlate,
-                            @RequestParam(value = "expirationDate") String expirationDate,
-                            @RequestParam(value = "purchaseDate") String purchaseDate,
-                            @RequestParam(value = "energylabel") String energyLabel) {
-        Owner owner = ownerService.getById(userId);
-        Car newCar = carService.create(owner, licensePlate, new DateTime(expirationDate), new DateTime(purchaseDate), energyLabel);
-        if (newCar == null) {
-            return Response.status(BAD_REQUEST).entity(newCar).build();
-        } else {
-            return Response.status(OK).entity(newCar).build();
-        }
+    /**
+     * Creates a new car.
+     * @param ownerId The id of the owner of the car.
+     * @param licensePlateString The license of the license plate.
+     * @param licenseExpirationDate The expiration date of the license plate
+     * @param carPurchaseDate The purchase date of the car.
+     * @param energyLabel The energy label of the car.
+     * @return A ResponseEntity containing the created car.
+     */
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public ResponseEntity<Car> create(  @RequestParam(value = "userId") int ownerId,
+                                        @RequestParam(value = "licensePlate") String licensePlateString,
+                                        @RequestParam(value = "expirationDate") String licenseExpirationDate,
+                                        @RequestParam(value = "purchaseDate") String carPurchaseDate,
+                                        @RequestParam(value = "energylabel") String energyLabel) {
+        Car createdCar = carManagementService.create(licensePlateString, licenseExpirationDate, energyLabel, ownerId, carPurchaseDate);
+        HttpStatus status = createdCar == null ? HttpStatus.BAD_REQUEST : HttpStatus.OK;
+        System.out.println(createdCar);
+        return new ResponseEntity<>(createdCar, status);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public Response update( @RequestParam(value = "carId") int carId,
-                            @RequestParam(value = "licensePlate") String licensePlate,
-                            @RequestParam(value = "expirationDate") String expirationDate,
-                            @RequestParam(value = "purchaseDate") String purchaseDate,
-                            @RequestParam(value = "energylabel") String energyLabel) {
-        Car updatedCar = carService.update(carId, licensePlate, energyLabel, trackerId);
-        if (updatedCar == null) {
-            return Response.status(BAD_REQUEST).entity(updatedCar).build();
-        } else {
-            return Response.status(OK).entity(updatedCar).build();
-        }
+    /**
+     * Updates an existing car.
+     * @param carId The id of the car which should be updated.
+     * @param licensePlateString The license of the license plate.
+     * @param licenseExpirationDate The expiration date of the license plate
+     * @param carPurchaseDate The purchase date of the car.
+     * @param energyLabel The energy label of the car.
+     * @param trackerId The id of the tracker that is being used by the car.
+     * @return A ResponseEntity containing the updated car.
+     */
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public ResponseEntity<Car> update( @RequestParam(value = "carId") int carId,
+                            @RequestParam(value = "licensePlate") String licensePlateString,
+                            @RequestParam(value = "expirationDate") String licenseExpirationDate,
+                            @RequestParam(value = "purchaseDate") String carPurchaseDate,
+                            @RequestParam(value = "energylabel") String energyLabel,
+                            @RequestParam(value = "trackerId") String trackerId) {
+        Car updatedCar = carService.update(carId, licensePlateString, energyLabel, trackerId);
+        HttpStatus status = updatedCar == null ? HttpStatus.BAD_REQUEST : HttpStatus.OK;
+        return new ResponseEntity<>(updatedCar, status);
     }
 }

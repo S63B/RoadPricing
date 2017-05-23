@@ -20,6 +20,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.getUserInfo(this.userId);
+    this.getUserCars(this.userId);
   }
 
   /**
@@ -33,6 +34,14 @@ export class ProfileComponent implements OnInit {
         this.user = foundUser as User;
       }
     });
+  }
+
+  /**
+   * Gets all cars from the current user.
+   * @param userID The id of the user of which all cars should be retrieved.
+   */
+  getUserCars(userID: number) {
+
   }
 
   /**

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { CarService } from "app/car.service";
 
 @Component({
@@ -12,10 +12,12 @@ export class CarComponent implements OnInit {
   private isNewCar: boolean;
   private car = {
     id: 0,
-    purchaseDate: '',
     licensePlate: {
       license: '',
       expirationDate: ''
+    },
+    ownership: {
+      purchaseDate: ''
     },
     energyLabel: '',
     tracker: {
@@ -25,16 +27,17 @@ export class CarComponent implements OnInit {
   private energyLabels: string[] = [ "A", "B", "C", "D", "E", "F" ];
 
   constructor(
-    private route: ActivatedRoute,
-    private carService: CarService) {
+    private activatedRoute: ActivatedRoute,
+    private carService: CarService,
+    private router: Router) {
 
   }
 
   ngOnInit() {
-    this.route.params.subscribe(parameters => {
+    this.activatedRoute.params.subscribe(parameters => {
       const carId: number = Number(parameters['carId']);
       // If the car Id is a number and equal to -1, a new car should be created.
-      if (!isNaN(carId) && carId === -1) {
+      if (carId === -1) {
         this.isNewCar = true;
       } else {
         this.isNewCar = false;
@@ -64,14 +67,18 @@ export class CarComponent implements OnInit {
    */
   saveCarInformation() {
     if (this.isNewCar) {
-      this.createNewCar(this.userId, this.car.licensePlate.license, this.car.energyLabel);
+      this.createNewCar(this.userId, this.car.licensePlate.license, this.car.licensePlate.expirationDate, this.car.ownership.purchaseDate, this.car.energyLabel);
     } else {
       this.updateCar(this.car.id, this.car.licensePlate.license, this.car.energyLabel, this.car.tracker.id);
     }
   }
 
-  createNewCar(userId: number, licenseplate: string, energyLabel: string) {
-    this.carService.create(userId, licenseplate, energyLabel);
+  createNewCar(userId: number, licenseplate: string, expirationDate: string, purchaseDate: string, energyLabel: string) {
+    this.carService.create(userId, licenseplate, expirationDate, purchaseDate, energyLabel).subscribe(result => {
+      const newCarID = result.json().id;
+      // Navigates to same page with the new car id.
+      this.router.navigate([`/car/${this.userId}/${newCarID}`]);
+    });
   }
 
   updateCar(carId: number, licenseplate: string, energyLabel: string, trackerId: number) {

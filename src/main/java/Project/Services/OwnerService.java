@@ -1,6 +1,6 @@
 package Project.Services;
 
-import Project.Dao.IOwnerDao;
+import Project.Dao.OwnerDao;
 import com.S63B.domain.Entities.Owner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,22 +10,24 @@ import org.springframework.stereotype.Service;
  */
 @Service("ownerService")
 public class OwnerService {
+    private OwnerDao ownerDao;
+
     @Autowired
-    private IOwnerDao ownerDao;
+    public OwnerService(OwnerDao ownerDao) {
+        this.ownerDao = ownerDao;
+    }
 
     public Owner getById(int id) {
-        return ownerDao.getById(id);
+        return ownerDao.findOne(id);
     }
 
     /**
-     * Updates a owners (user) address and residence information.
+     * Updates a owners (user).
      *
-     * @param id The id of the owner (user);
-     * @param address The address of the owner (user);
-     * @param residence The residence of the owner (user);
+     * @param owner The owner that should be updated.
      * @return Whether the operation has succeeded.
      */
-    public boolean update(int id, String address, String residence) {
-        return ownerDao.update(id, address, residence);
+    public Owner update(Owner owner) {
+        return ownerDao.save(owner);
     }
 }

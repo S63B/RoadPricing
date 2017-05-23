@@ -15,17 +15,17 @@ export class CarService {
    * @returns {Car} A car object containing all information of a car.
    */
   getById(carId: number) {
-    return this.httpService.get(`${API_URL}/car?carId=${carId}`)
-      .map(this.httpService.extractData);
+    return this.httpService.get(`${API_URL_LOCALHOST}/car?id=${carId}`)
+      .map((result) => {
+        return result.json();
+      });
   }
 
-  create(userId: number, licenseplate: string, energyLabel: string) {
-    return this.httpService.post(`${API_URL_LOCALHOST}/car?userId=${userId}&licensePlate=${licenseplate}&energyLabel=${energyLabel}`)
-      .map(this.httpService.extractData);
+  create(userId: number, licenseplate: string, expirationDate: string, purchaseDate: string, energylabel: string) {
+    return this.httpService.post(`${API_URL_LOCALHOST}/car/create?userId=${userId}&licensePlate=${licenseplate}&expirationDate=${expirationDate}&purchaseDate=${purchaseDate}&energylabel=${energylabel}`);
   }
 
   update(carId: number, licenseplate: string, energyLabel: string, trackerId: number) {
-    return this.httpService.post(`${API_URL_LOCALHOST}/car?carId=${carId}&licensePlate=${licenseplate}&energyLabel=${energyLabel}&trackerid=${trackerId}`)
-      .map(this.httpService.extractData);
+    return this.httpService.post(`${API_URL_LOCALHOST}/car/update?carId=${carId}&licensePlate=${licenseplate}&energyLabel=${energyLabel}&trackerid=${trackerId}`);
   }
 }

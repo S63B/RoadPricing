@@ -29,7 +29,7 @@ public class UserRest {
      * @param id The ID of a owner (user).
      * @return A response object containing all personal information of a owner (user).
      */
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public Response getUserInfo(@RequestParam(value = "id") int id) {
         Object result = null;
         Owner owner = ownerService.getById(id);
@@ -40,12 +40,16 @@ public class UserRest {
         }
         return Response.status(OK).entity(result).build();
     }
-    
+
     @RequestMapping(value = "/info", method = RequestMethod.POST)
     public Response update(@RequestParam(value = "id") int id,
                            @RequestParam(value = "address") String address,
                            @RequestParam(value = "residence") String residence) {
-        if (ownerService.update(id, address, residence)) {
+        Owner originalOwner = ownerService.getById(id);
+        originalOwner.setAddress(address);
+        originalOwner.setResidence(residence);
+        Owner updatedOwner = ownerService.update(originalOwner);
+        if (updatedOwner == null) {
             return Response.status(OK).entity(true).build();
         } else {
             return Response.status(BAD_REQUEST).entity(false).build();
