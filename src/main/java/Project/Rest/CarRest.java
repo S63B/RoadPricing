@@ -1,9 +1,12 @@
 package Project.Rest;
 
 import Project.Services.CarManagementService;
+import Project.Services.CarOwnerService;
 import Project.Services.CarService;
 import Project.Services.OwnerService;
+import Project.model.CarDTO;
 import com.S63B.domain.Entities.Car;
+import com.S63B.domain.Entities.Car_Ownership;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,14 +21,16 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "*")
 @Controller
 public class CarRest {
-    private final CarService carService;
-    private final OwnerService ownerService;
+    private CarService carService;
+    private OwnerService ownerService;
+    private CarOwnerService carOwnershipService;
     private CarManagementService carManagementService;
 
     @Autowired
-    public CarRest(CarService carService, OwnerService ownerService, CarManagementService carManagementService) {
+    public CarRest(CarService carService, OwnerService ownerService, CarOwnerService carOwnershipService, CarManagementService carManagementService) {
         this.carService = carService;
         this.ownerService = ownerService;
+        this.carOwnershipService = carOwnershipService;
         this.carManagementService = carManagementService;
     }
 
@@ -35,10 +40,20 @@ public class CarRest {
      * @return A ResponseEntity containing the car with the given id.
      */
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public ResponseEntity<Car> getById(@RequestParam(value = "id") int id) {
+    public ResponseEntity<Object> getById(@RequestParam(value = "id") int id) {
+        Object result;
         Car car = carService.getById(id);
-        HttpStatus status = car == null ? HttpStatus.BAD_REQUEST : HttpStatus.OK;
-        return new ResponseEntity<>(car, status);
+        HttpStatus status;
+        if (car == null) {
+            status = HttpStatus.BAD_REQUEST;
+            result = car;
+        } else {
+            status = HttpStatus.OK;
+            Car_Ownership latestOwnership = carOwnershipService.getLatest(car);
+            CarDTO carDTO = new CarDTO(car, latestOwnership);
+            result = carDTO;
+        }
+        return new ResponseEntity<>(result, status);
     }
 
     /**

@@ -16,9 +16,7 @@ export class CarService {
    */
   getById(carId: number) {
     return this.httpService.get(`${API_URL_LOCALHOST}/car?id=${carId}`)
-      .map((result) => {
-        return result.json();
-      });
+      .map((result) => result.json());
   }
 
   create(userId: number, licenseplate: string, expirationDate: string, purchaseDate: string, energylabel: string) {
@@ -27,5 +25,14 @@ export class CarService {
 
   update(carId: number, licenseplate: string, energyLabel: string, trackerId: number) {
     return this.httpService.post(`${API_URL_LOCALHOST}/car/update?carId=${carId}&licensePlate=${licenseplate}&energyLabel=${energyLabel}&trackerid=${trackerId}`);
+  }
+
+  /**
+   * Converts a JodaTime Date-object to a human readable string in the 'DD-MM-YYYY' format.
+   * @param jodaTimeDate The JodaTime Date-object which should be converted.
+   * @returns {String} A human readable date string in the 'DD-MM-YYYY' format.
+   */
+  convertJodaTimeDateToString(jodaTimeDate: any): String {
+    return `${jodaTimeDate.dayOfMonth}-${jodaTimeDate.monthOfYear}-${jodaTimeDate.year}`;
   }
 }
