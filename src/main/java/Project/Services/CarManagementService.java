@@ -1,10 +1,7 @@
 package Project.Services;
 
-import com.S63B.domain.Entities.Car;
-import com.S63B.domain.Entities.Car_Ownership;
-import com.S63B.domain.Entities.LicensePlate;
-import com.S63B.domain.Entities.Owner;
-import com.S63B.domain.Enums;
+import com.S63B.domain.Entities.*;
+import com.S63B.domain.Enums.EnergyLabel;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,32 +17,33 @@ import java.util.List;
 @Transactional
 public class CarManagementService {
     private CarService carService;
-    private CarOwnerService carOwnerService;
+    private CarOwnerService ownershipService;
     private OwnerService ownerService;
     private LicensePlateService licensePlateService;
+    private TrackerService trackerService;
 
     @Autowired
-    public CarManagementService(CarService carService, CarOwnerService carOwnerService, OwnerService ownerService, LicensePlateService licensePlateService) {
+    public CarManagementService(CarService carService, CarOwnerService ownershipService, OwnerService ownerService, LicensePlateService licensePlateService, TrackerService trackerService) {
         this.carService = carService;
-        this.carOwnerService = carOwnerService;
+        this.ownershipService = ownershipService;
         this.ownerService = ownerService;
         this.licensePlateService = licensePlateService;
+        this.trackerService = trackerService;
     }
 
     public Car create(String licensePlateString, String licenseExpirationDateString, String energylabel, int ownerId, String carPurchaseDateString) {
         LicensePlate licensePlate = licensePlateService.findByLicense(licensePlateString);
         if (licensePlate == null) {
-            licensePlate = new LicensePlate(licensePlateString, DateTime.parse(licenseExpirationDateString, DateTimeFormat.forPattern("DD-MM-YYYY")));
+            licensePlate = createLicensePlate(licensePlateString, DateTime.parse(licenseExpirationDateString, DateTimeFormat.forPattern("DD-MM-YYYY")));
         }
-        licensePlate = licensePlateService.create(licensePlate);
 
-        Car newCar = new Car(licensePlate, Enums.EnergyLabel.valueOf(energylabel));
+        Car newCar = new Car(licensePlate, EnergyLabel.valueOf(energylabel));
         newCar = carService.create(newCar);
 
         Owner carOwner = ownerService.getById(ownerId);
 
         Car_Ownership carOwnership = new Car_Ownership(newCar, carOwner, DateTime.parse(carPurchaseDateString, DateTimeFormat.forPattern("DD-MM-YYYY")));
-        carOwnership = carOwnerService.create(carOwnership);
+        carOwnership = ownershipService.create(carOwnership);
 
         List<Car_Ownership> ownedCars = carOwner.getOwnedCars();
         ownedCars.add(carOwnership);
@@ -55,7 +53,52 @@ public class CarManagementService {
         return newCar;
     }
 
-    public Car update() {
-        return null;
+    public LicensePlate createLicensePlate(String licensePlateString, DateTime licenseExpirationDate) {
+        LicensePlate newLicensePlate = new LicensePlate(licensePlateString, licenseExpirationDate);
+        return licensePlateService.create(newLicensePlate);
+    }
+
+    public Tracker createCarTracker(String serialNumber, String country) {
+        Tracker newTracker = new Tracker(serialNumber, country);
+        return this.trackerService.create(newTracker);
+    }
+
+    public Car update(int carId, String licensePlateString, String licenseExpirationDateString, String carPurchaseDate, String energyLabel, String trackerSerialNumber) {
+        Car updatedCar = carService.getById(carId);
+        Car_Ownership ownership = ownershipService.getLatest(updatedCar);
+
+        DateTime licenseExpirationDate = DateTime.parse(licenseExpirationDateString, DateTimeFormat.forPattern("DD-MM-YYYY"));
+        if (hasLicensePlateChanged(updatedCar.getLicensePlate(), licensePlateString, licenseExpirationDate)) {
+            LicensePlate updatedLicensePlate = licensePlateService.findByLicense(licensePlateString);
+            if (updatedLicensePlate == null) {
+                updatedLicensePlate = createLicensePlate(licensePlateString, licenseExpirationDate);
+            }
+            updatedCar.setLicensePlate(updatedLicensePlate);
+        }
+
+        DateTime purchaseDate = DateTime.parse(carPurchaseDate, DateTimeFormat.forPattern("DD-MM-YYYY"));
+        if (ownership.getPurchaseDate().getMillis() != purchaseDate.getMillis()) {
+            ownership.setPurchaseDate(purchaseDate);
+            ownershipService.update(ownership);
+        }
+
+        if (!updatedCar.getEnergyLabel().equals(EnergyLabel.valueOf(energyLabel))) {
+            updatedCar.setEnergyLabel(EnergyLabel.valueOf(energyLabel));
+        }
+
+        if (!updatedCar.getTracker().getSerialNumber().equals(trackerSerialNumber)) {
+            Tracker carTracker = trackerService.findBySerialNumber(trackerSerialNumber);
+            if (carTracker == null) {
+                carTracker = createCarTracker(trackerSerialNumber, "NL");
+            }
+            updatedCar.setTracker(carTracker);
+        }
+
+        return this.carService.update(updatedCar);
+    }
+
+    public boolean hasLicensePlateChanged(LicensePlate oldLicensePlate, String newLicensePlateString, DateTime newExpirationDate) {
+        return !oldLicensePlate.getLicense().equals(newLicensePlateString)
+                || oldLicensePlate.getExpirationDate().getMillis() != newExpirationDate.getMillis();
     }
 }

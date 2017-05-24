@@ -10,17 +10,20 @@ import { CarService } from "app/car.service";
 export class CarComponent implements OnInit {
   private userId: number;
   private isNewCar: boolean;
-  private car = {
-    id: 0,
-    licensePlate: {
-      license: '',
-      expirationDate: ''
+  private ownership = {
+    car: {
+      id: 0,
+      licensePlate: {
+        license: '',
+        expirationDate: ''
+      },
+      energyLabel: '',
+      tracker: {
+        id: 0,
+        serialNumber: ''
+      }
     },
-    purchaseDate: '',
-    energyLabel: '',
-    tracker: {
-      id: 0
-    }
+    purchaseDate: ''
   };
   private energyLabels: string[] = ["A", "B", "C", "D", "E", "F"];
 
@@ -55,10 +58,10 @@ export class CarComponent implements OnInit {
    * @param {number} carId The identifier of a car.
    */
   getCarInformation(carId: number) {
-    this.carService.getById(carId).subscribe(foundCar => {
-      foundCar.purchaseDate = this.carService.convertJodaTimeDateToString(foundCar.purchaseDate);
-      foundCar.licensePlate.expirationDate = this.carService.convertJodaTimeDateToString(foundCar.licensePlate.expirationDate);
-      this.car = foundCar;
+    this.carService.getById(carId).subscribe(carOwnership => {
+      carOwnership.purchaseDate = this.carService.convertJodaTimeDateToString(carOwnership.purchaseDate);
+      carOwnership.car.licensePlate.expirationDate = this.carService.convertJodaTimeDateToString(carOwnership.car.licensePlate.expirationDate);
+      this.ownership = carOwnership;
     });
   }
 
@@ -67,19 +70,19 @@ export class CarComponent implements OnInit {
    */
   saveCarInformation() {
     if (this.isNewCar) {
-      this.createNewCar(this.userId, this.car.licensePlate.license, this.car.licensePlate.expirationDate, this.car.purchaseDate, this.car.energyLabel);
+      this.createNewCar(this.userId, this.ownership.car.licensePlate.license, this.ownership.car.licensePlate.expirationDate, this.ownership.purchaseDate, this.ownership.car.energyLabel);
     } else {
-      this.updateCar(this.car.id, this.car.licensePlate.license, this.car.energyLabel, this.car.tracker.id);
+      this.updateCar(this.ownership.car.id, this.ownership.car.licensePlate.license, this.ownership.car.licensePlate.expirationDate, this.ownership.purchaseDate, this.ownership.car.energyLabel, this.ownership.car.tracker.serialNumber);
     }
   }
 
   /**
    * Creates a new car.
-   * @param userId The id of the owner of the car.
-   * @param licenseExpirationDate The license plate string of the new car.
-   * @param carExpirationDate The expiration date of the license plate. 
-   * @param purchaseDate The purchase date of the car.
-   * @param energyLabel The energy label of the car.
+   * @param {number} userId The id of the owner of the car.
+   * @param {string} licensePlate The license plate string of the new car.
+   * @param {string} licenseExpirationDate The expiration date of the license plate of the new car.
+   * @param {string} purchaseDate The purchase date of the car.
+   * @param {string} energyLabel The energy label of the car.
    */
   createNewCar(userId: number, licenseplate: string, licenseExpirationDate: string, carPurchaseDate: string, energyLabel: string) {
     this.carService.create(userId, licenseplate, licenseExpirationDate, carPurchaseDate, energyLabel).subscribe(result => {
@@ -89,7 +92,18 @@ export class CarComponent implements OnInit {
     });
   }
 
-  updateCar(carId: number, licenseplate: string, energyLabel: string, trackerId: number) {
-    this.carService.update(carId, licenseplate, energyLabel, trackerId);
+  /**
+   * Updates an existing car.
+   * @param {number} carId The id of the car which should be updated.
+   * @param {string} licensePlate The license plate string of a car.
+   * @param {string} licenseExpirationDate The expiration date of the license plate of a car.
+   * @param {string} carPurchaseDate The purhase date of a car.
+   * @param {string} energyLabel The energy label of a car.
+   * @param {number} trackerSerialNumber The serial number of the tracker that is being used by the car.
+   */
+  updateCar(carId: number, licenseplate: string, licenseExpirationDate: string, carPurchaseDate: string, energyLabel: string, trackerSerialNumber: string) {
+    this.carService.update(carId, licenseplate, licenseExpirationDate, carPurchaseDate, energyLabel, trackerSerialNumber).subscribe(result => {
+
+    })
   }
 }

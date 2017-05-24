@@ -26,11 +26,11 @@ public class CarService {
         return carDao.findOne(id);
     }
 
-    public Car update(int carId, String licensePlate, String energyLabel, String trackerId) {
-        return null;
-    }
-
     public Car create(Car newCar) {
         return this.carDao.save(newCar);
+    }
+
+    public Car update(Car updatedCar) {
+        return this.carDao.save(updatedCar);
     }
 }

@@ -19,12 +19,12 @@ export class CarService {
       .map((result) => result.json());
   }
 
-  create(userId: number, licenseplate: string, expirationDate: string, purchaseDate: string, energylabel: string) {
-    return this.httpService.post(`${API_URL_LOCALHOST}/car/create?userId=${userId}&licensePlate=${licenseplate}&expirationDate=${expirationDate}&purchaseDate=${purchaseDate}&energylabel=${energylabel}`);
+  create(userId: number, licenseplate: string, licenseExpirationDate: string, carPurchaseDate: string, energylabel: string) {
+    return this.httpService.post(`${API_URL_LOCALHOST}/car/create?userId=${userId}&licensePlate=${licenseplate}&expirationDate=${licenseExpirationDate}&purchaseDate=${carPurchaseDate}&energylabel=${energylabel}`);
   }
 
-  update(carId: number, licenseplate: string, energyLabel: string, trackerId: number) {
-    return this.httpService.post(`${API_URL_LOCALHOST}/car/update?carId=${carId}&licensePlate=${licenseplate}&energyLabel=${energyLabel}&trackerid=${trackerId}`);
+  update(carId: number, licenseplate: string, licenseExpirationDate: string, carPurchaseDate: string, energyLabel: string, trackerSerialNumber: string) {
+    return this.httpService.post(`${API_URL_LOCALHOST}/car/update?carId=${carId}&licensePlate=${licenseplate}&expirationDate=${licenseExpirationDate}&purchaseDate=${carPurchaseDate}&energyLabel=${energyLabel}&trackerSerialNumber=${trackerSerialNumber}`);
   }
 
   /**

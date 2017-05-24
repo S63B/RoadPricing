@@ -30,4 +30,8 @@ public class CarOwnerService {
         Car_Ownership[] carOwnerships = Iterables.toArray(this.carOwnerDao.findAll(), Car_Ownership.class);
         return carOwnerships[carOwnerships.length - 1];
     }
+
+    public Car_Ownership update(Car_Ownership ownership) {
+        return this.carOwnerDao.save(ownership);
+    }
 }
