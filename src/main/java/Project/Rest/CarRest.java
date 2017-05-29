@@ -70,10 +70,11 @@ public class CarRest {
                                         @RequestParam(value = "licensePlate") String licensePlateString,
                                         @RequestParam(value = "expirationDate") String licenseExpirationDate,
                                         @RequestParam(value = "purchaseDate") String carPurchaseDate,
-                                        @RequestParam(value = "energylabel") String energyLabel) {
+                                        @RequestParam(value = "energylabel") String energyLabel,
+                                        @RequestParam(value = "trackerSerialNumber") String trackerSerialNumber) {
         CarDTO result;
         HttpStatus status;
-        Car createdCar = carManagementService.create(licensePlateString, licenseExpirationDate, energyLabel, ownerId, carPurchaseDate);
+        Car createdCar = carManagementService.create(licensePlateString, licenseExpirationDate, energyLabel, ownerId, carPurchaseDate, trackerSerialNumber);
         if (createdCar == null) {
             status = HttpStatus.BAD_REQUEST;
             result = null;
@@ -99,7 +100,7 @@ public class CarRest {
                             @RequestParam(value = "licensePlate") String licensePlateString,
                             @RequestParam(value = "expirationDate") String licenseExpirationDate,
                             @RequestParam(value = "purchaseDate") String carPurchaseDate,
-                            @RequestParam(value = "energylabel") String energyLabel,
+                            @RequestParam(value = "energyLabel") String energyLabel,
                             @RequestParam(value = "trackerSerialNumber") String trackerSerialNumber) {
         CarDTO result;
         HttpStatus status;

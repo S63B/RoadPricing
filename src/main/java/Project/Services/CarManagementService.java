@@ -31,7 +31,7 @@ public class CarManagementService {
         this.trackerService = trackerService;
     }
 
-    public Car create(String licensePlateString, String licenseExpirationDateString, String energylabel, int ownerId, String carPurchaseDateString) {
+    public Car create(String licensePlateString, String licenseExpirationDateString, String energylabel, int ownerId, String carPurchaseDateString, String trackerSerialNumber) {
         LicensePlate licensePlate = licensePlateService.findByLicense(licensePlateString);
         if (licensePlate == null) {
             licensePlate = createLicensePlate(licensePlateString, DateTime.parse(licenseExpirationDateString, DateTimeFormat.forPattern("DD-MM-YYYY")));
@@ -39,6 +39,12 @@ public class CarManagementService {
 
         Car newCar = new Car(licensePlate, EnergyLabel.valueOf(energylabel));
         newCar = carService.create(newCar);
+
+        Tracker carTracker = trackerService.findBySerialNumber(trackerSerialNumber);
+        if (carTracker == null) {
+            carTracker = createCarTracker(trackerSerialNumber, "NL");
+        }
+        newCar.setTracker(carTracker);
 
         Owner carOwner = ownerService.getById(ownerId);
 
@@ -86,7 +92,8 @@ public class CarManagementService {
             updatedCar.setEnergyLabel(EnergyLabel.valueOf(energyLabel));
         }
 
-        if (!updatedCar.getTracker().getSerialNumber().equals(trackerSerialNumber)) {
+        if (updatedCar.getTracker() == null
+                || !updatedCar.getTracker().getSerialNumber().equals(trackerSerialNumber)) {
             Tracker carTracker = trackerService.findBySerialNumber(trackerSerialNumber);
             if (carTracker == null) {
                 carTracker = createCarTracker(trackerSerialNumber, "NL");

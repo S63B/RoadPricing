@@ -17,13 +17,13 @@ export class CarComponent implements OnInit {
         license: '',
         expirationDate: ''
       },
-      energyLabel: '',
-      tracker: {
-        id: 0,
-        serialNumber: ''
-      }
+      energyLabel: ''
     },
-    purchaseDate: ''
+    purchaseDate: '',
+    tracker: {
+      id: 0,
+      serialNumber: ''
+    }
   };
   private energyLabels: string[] = ["A", "B", "C", "D", "E", "F"];
 
@@ -37,7 +37,7 @@ export class CarComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe(parameters => {
       const carId: number = Number(parameters['carId']);
-      // If the car Id is a number and equal to -1, a new car should be created.
+      // If the car Id is equal to -1 it means a new car should be created.
       if (carId === -1) {
         this.isNewCar = true;
       } else {
@@ -45,6 +45,7 @@ export class CarComponent implements OnInit {
         this.getCarInformation(parameters['carId']);
       }
 
+      // Get the users / owners ID so new cars can be linked to the owner.
       const userId: number = Number(parameters['userId']);
       if (typeof userId !== 'undefined') {
         this.userId = userId;
@@ -58,10 +59,8 @@ export class CarComponent implements OnInit {
    * @param {number} carId The identifier of a car.
    */
   getCarInformation(carId: number) {
-    this.carService.getById(carId).subscribe(carOwnership => {
-      carOwnership.purchaseDate = this.carService.convertJodaTimeDateToString(carOwnership.purchaseDate);
-      carOwnership.car.licensePlate.expirationDate = this.carService.convertJodaTimeDateToString(carOwnership.car.licensePlate.expirationDate);
-      this.ownership = carOwnership;
+    this.carService.getById(carId).subscribe(result => {
+      this.ownership = this.convertCarOwnershipDates(result.json());;
     });
   }
 
@@ -70,9 +69,9 @@ export class CarComponent implements OnInit {
    */
   saveCarInformation() {
     if (this.isNewCar) {
-      this.createNewCar(this.userId, this.ownership.car.licensePlate.license, this.ownership.car.licensePlate.expirationDate, this.ownership.purchaseDate, this.ownership.car.energyLabel);
+      this.createNewCar(this.userId, this.ownership.car.licensePlate.license, this.ownership.car.licensePlate.expirationDate, this.ownership.purchaseDate, this.ownership.car.energyLabel, this.ownership.tracker.serialNumber);
     } else {
-      this.updateCar(this.ownership.car.id, this.ownership.car.licensePlate.license, this.ownership.car.licensePlate.expirationDate, this.ownership.purchaseDate, this.ownership.car.energyLabel, this.ownership.car.tracker.serialNumber);
+      this.updateCar(this.ownership.car.id, this.ownership.car.licensePlate.license, this.ownership.car.licensePlate.expirationDate, this.ownership.purchaseDate, this.ownership.car.energyLabel, this.ownership.tracker.serialNumber);
     }
   }
 
@@ -83,10 +82,11 @@ export class CarComponent implements OnInit {
    * @param {string} licenseExpirationDate The expiration date of the license plate of the new car.
    * @param {string} purchaseDate The purchase date of the car.
    * @param {string} energyLabel The energy label of the car.
+   * @param {number} trackerSerialNumber The serial number of the tracker that is being used by the car.
    */
-  createNewCar(userId: number, licenseplate: string, licenseExpirationDate: string, carPurchaseDate: string, energyLabel: string) {
-    this.carService.create(userId, licenseplate, licenseExpirationDate, carPurchaseDate, energyLabel).subscribe(result => {
-      const newCarID = result.json().id;
+  createNewCar(userId: number, licenseplate: string, licenseExpirationDate: string, carPurchaseDate: string, energyLabel: string, trackerSerialNumber: string) {
+    this.carService.create(userId, licenseplate, licenseExpirationDate, carPurchaseDate, energyLabel, trackerSerialNumber).subscribe(result => {
+      const newCarID = result.json().car.id;
       // Navigates to same page with the new car id.
       this.router.navigate([`/car/${this.userId}/${newCarID}`]);
     });
@@ -103,7 +103,18 @@ export class CarComponent implements OnInit {
    */
   updateCar(carId: number, licenseplate: string, licenseExpirationDate: string, carPurchaseDate: string, energyLabel: string, trackerSerialNumber: string) {
     this.carService.update(carId, licenseplate, licenseExpirationDate, carPurchaseDate, energyLabel, trackerSerialNumber).subscribe(result => {
+      this.ownership = this.convertCarOwnershipDates(result.json());
+    });
+  }
 
-    })
+  /**
+   * Converts the car ownership dates to readable string which can be edited in the component.
+   * @param {any} carOwnership The car ownership object of which the dates should be converted.
+   * @returns {any} The car ownership object with updated dates.
+   */
+  convertCarOwnershipDates(carOwnership: any) {
+      carOwnership.purchaseDate = this.carService.convertJodaTimeDateToString(carOwnership.purchaseDate);
+      carOwnership.car.licensePlate.expirationDate = this.carService.convertJodaTimeDateToString(carOwnership.car.licensePlate.expirationDate);
+      return carOwnership;
   }
 }

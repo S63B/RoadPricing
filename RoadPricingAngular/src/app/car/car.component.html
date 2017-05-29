@@ -26,9 +26,9 @@
       <label for="is-stolen">{{ 'CAR.STOLEN_LABEL' | translate }}</label>
       <input [ngModel]="ownership.car.stolen" type="checkbox" name="is-stolen" disabled/>
     </div>
-    <div *ngIf="!isNewCar" class="form-group">
+    <div class="form-group">
       <label for="car-tracker">{{ 'CAR.TRACKER_LABEL' | translate }}</label>
-      <input [(ngModel)]="ownership.car.tracker.serialNumber" id="car-tracker" type="text" class="form-control input-sm" name="car-tracker" required/>
+      <input [(ngModel)]="ownership.tracker.serialNumber" id="car-tracker" type="text" class="form-control input-sm" name="car-tracker" required/>
     </div>
     <button (click)="saveCarInformation()" type="submit" class="btn btn-primary" [disabled]="!carForm.valid">{{ 'GLOBAL.SUBMIT_BUTTON' | translate }}</button>
   </form>
