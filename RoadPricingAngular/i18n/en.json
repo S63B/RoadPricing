@@ -39,6 +39,7 @@
     "CAR_OWNERSHIP_TITLE": "Your cars",
     "NO_CARS": "You haven't added any cars yet!",
     "ADD_FIRST_CAR": "Add first car",
+    "ADD_CAR": "Add car",
     "UPDATE_PASSWORD_TITLE": "Update password",
     "NEW_PASSWORD": "New password",
     "CONFIRM_PASSWORD": "Confirm password"

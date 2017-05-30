@@ -93,6 +93,7 @@ public class CarManagementService {
         }
 
         if (updatedCar.getTracker() == null
+                || updatedCar.getTracker().getSerialNumber() == null
                 || !updatedCar.getTracker().getSerialNumber().equals(trackerSerialNumber)) {
             Tracker carTracker = trackerService.findBySerialNumber(trackerSerialNumber);
             if (carTracker == null) {
