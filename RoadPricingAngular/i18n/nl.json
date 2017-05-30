@@ -48,7 +48,9 @@
     "UPDATE_TITLE": "Werk auto gegevens bij",
     "MANUFACTURER_LABEL": "Autofabrikant",
     "MODEL_LABEL": "Model",
+    "PURCHASE_DATE_LABEL": "Datum van aankoop",
     "LICENSE_PLATE_LABEL": "Kentenkenplaat",
+    "LICENSE_PLATE_EXPIRATION_DATE_LABEL": "Kentekenplaat geldig tot",
     "ENERGY_LABEL": "Energie label",
     "STOLEN_LABEL": "Is de auto gestolen?",
     "TRACKER_LABEL": "Car tracker identificatienummer"

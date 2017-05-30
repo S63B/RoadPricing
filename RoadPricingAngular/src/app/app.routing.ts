@@ -19,7 +19,7 @@ const appRoutes: Routes = [
     component: ProfileComponent
   },
   {
-    path: 'car/:carId',
+    path: 'car/:userId/:carId',
     component: CarComponent
   },
   {

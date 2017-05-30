@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UserService } from "app/user.service";
+import { OwnerService } from "app/user.service";
 import { ActivatedRoute } from "@angular/router";
 import { User } from "app/user";
+import { CarService } from "app/car.service";
 
 @Component({
   selector: 'app-profile',
@@ -9,17 +10,20 @@ import { User } from "app/user";
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  private userID: number;
+  private userId: number;
   private user: User = new User();
+  private ownedCars: object[] = [];
 
-  constructor(private userService: UserService, private route: ActivatedRoute) {
+  constructor(private userService: OwnerService,
+              private route: ActivatedRoute) {
     this.route.params.subscribe(parameters => {
-      this.userID = parameters['userId'];
+      this.userId = parameters['userId'];
     });
    }
 
   ngOnInit() {
-    this.getUserInfo(this.userID);
+    this.getUserInfo(this.userId);
+    this.getUserCars(this.userId);
   }
 
   /**
@@ -28,12 +32,20 @@ export class ProfileComponent implements OnInit {
    * @param {number} userID The id of the user of which all info should be retrieved.
    */
   getUserInfo(userID: number) {
-    this.userService.getUserInfo(userID).subscribe(response => {
-      if (typeof response !== "string") {
-        this.user = response as User;
-        this.user["cars"] = [ { name: "Tesla", model: "Model X" }];
-        console.log(this.user);
+    this.userService.getUserInfo(userID).subscribe(foundUser => {
+      if (typeof foundUser === "object") {
+        this.user = foundUser as User;
       }
+    });
+  }
+
+  /**
+   * Gets all cars from the current user.
+   * @param userID The id of the user of which all cars should be retrieved.
+   */
+  getUserCars(userId: number) {
+    this.userService.getCarsByOwnerId(userId).subscribe(result => {
+      this.ownedCars = result.json();
     });
   }
 
@@ -41,9 +53,10 @@ export class ProfileComponent implements OnInit {
    * Saves the current users info.
    */
   saveUserInfo() {
-    this.userService.update(this.user.id, this.user.address, this.user.residence).subscribe(response => {
-      location.reload();
-      // Show success message
+    this.userService.update(this.user.id, this.user.address, this.user.residence).subscribe(updateSucceeded => {
+      if (updateSucceeded) {
+        this.getUserInfo(this.userId);
+      }
     });
   }
 
