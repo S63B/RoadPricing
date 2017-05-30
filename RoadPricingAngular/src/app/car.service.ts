@@ -41,7 +41,7 @@ export class CarService {
    * @param {number} trackerSerialNumber The serial number of the tracker that is being used by the car.
    */
   update(carId: number, licenseplate: string, licenseExpirationDate: string, carPurchaseDate: string, energyLabel: string, trackerSerialNumber: string) {
-    return this.httpService.post(`${API_URL_LOCALHOST}/car/update?carId=${carId}&licensePlate=${licenseplate}&expirationDate=${licenseExpirationDate}&purchaseDate=${carPurchaseDate}&energyLabel=${energyLabel}&trackerSerialNumber=${trackerSerialNumber}`);
+    return this.httpService.put(`${API_URL_LOCALHOST}/car/update?carId=${carId}&licensePlate=${licenseplate}&expirationDate=${licenseExpirationDate}&purchaseDate=${carPurchaseDate}&energyLabel=${energyLabel}&trackerSerialNumber=${trackerSerialNumber}`);
   }
 
   /**

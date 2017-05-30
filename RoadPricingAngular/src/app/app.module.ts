@@ -23,7 +23,7 @@ import { MapComponent } from './map/map.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CarComponent } from './car/car.component';
 import { CarService } from "app/car.service";
-import { UserService } from "app/user.service";
+import { OwnerService } from "app/user.service";
 
 @NgModule({
   declarations: [
@@ -56,7 +56,7 @@ import { UserService } from "app/user.service";
     RideService,
     InvoiceService,
     CarService,
-    UserService
+    OwnerService
   ],
   bootstrap: [AppComponent]
 })

@@ -66,12 +66,12 @@ public class CarRest {
      * @return A ResponseEntity containing the created car.
      */
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public ResponseEntity<CarDTO> create(  @RequestParam(value = "userId") int ownerId,
-                                        @RequestParam(value = "licensePlate") String licensePlateString,
-                                        @RequestParam(value = "expirationDate") String licenseExpirationDate,
-                                        @RequestParam(value = "purchaseDate") String carPurchaseDate,
-                                        @RequestParam(value = "energylabel") String energyLabel,
-                                        @RequestParam(value = "trackerSerialNumber") String trackerSerialNumber) {
+    public ResponseEntity<CarDTO> create(   @RequestParam(value = "userId") int ownerId,
+                                            @RequestParam(value = "licensePlate") String licensePlateString,
+                                            @RequestParam(value = "expirationDate") String licenseExpirationDate,
+                                            @RequestParam(value = "purchaseDate") String carPurchaseDate,
+                                            @RequestParam(value = "energylabel") String energyLabel,
+                                            @RequestParam(value = "trackerSerialNumber") String trackerSerialNumber) {
         CarDTO result;
         HttpStatus status;
         Car createdCar = carManagementService.create(licensePlateString, licenseExpirationDate, energyLabel, ownerId, carPurchaseDate, trackerSerialNumber);
@@ -95,13 +95,13 @@ public class CarRest {
      * @param trackerSerialNumber The id of the tracker that is being used by the car.
      * @return A ResponseEntity containing the updated car.
      */
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public ResponseEntity<CarDTO> update( @RequestParam(value = "carId") int carId,
-                            @RequestParam(value = "licensePlate") String licensePlateString,
-                            @RequestParam(value = "expirationDate") String licenseExpirationDate,
-                            @RequestParam(value = "purchaseDate") String carPurchaseDate,
-                            @RequestParam(value = "energyLabel") String energyLabel,
-                            @RequestParam(value = "trackerSerialNumber") String trackerSerialNumber) {
+    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+    public ResponseEntity<CarDTO> update(   @RequestParam(value = "carId") int carId,
+                                            @RequestParam(value = "licensePlate") String licensePlateString,
+                                            @RequestParam(value = "expirationDate") String licenseExpirationDate,
+                                            @RequestParam(value = "purchaseDate") String carPurchaseDate,
+                                            @RequestParam(value = "energyLabel") String energyLabel,
+                                            @RequestParam(value = "trackerSerialNumber") String trackerSerialNumber) {
         CarDTO result;
         HttpStatus status;
         Car updatedCar = carManagementService.update(carId, licensePlateString, licenseExpirationDate, carPurchaseDate, energyLabel, trackerSerialNumber);

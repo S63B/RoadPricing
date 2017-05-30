@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UserService } from "app/user.service";
+import { OwnerService } from "app/user.service";
 import { ActivatedRoute } from "@angular/router";
 import { User } from "app/user";
+import { CarService } from "app/car.service";
 
 @Component({
   selector: 'app-profile',
@@ -11,8 +12,10 @@ import { User } from "app/user";
 export class ProfileComponent implements OnInit {
   private userId: number;
   private user: User = new User();
+  private ownedCars: object[] = [];
 
-  constructor(private userService: UserService, private route: ActivatedRoute) {
+  constructor(private userService: OwnerService,
+              private route: ActivatedRoute) {
     this.route.params.subscribe(parameters => {
       this.userId = parameters['userId'];
     });
@@ -40,8 +43,10 @@ export class ProfileComponent implements OnInit {
    * Gets all cars from the current user.
    * @param userID The id of the user of which all cars should be retrieved.
    */
-  getUserCars(userID: number) {
-
+  getUserCars(userId: number) {
+    this.userService.getCarsByOwnerId(userId).subscribe(result => {
+      this.ownedCars = result.json();
+    });
   }
 
   /**
