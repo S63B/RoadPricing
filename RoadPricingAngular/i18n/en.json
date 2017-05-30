@@ -39,6 +39,7 @@
     "CAR_OWNERSHIP_TITLE": "Your cars",
     "NO_CARS": "You haven't added any cars yet!",
     "ADD_FIRST_CAR": "Add first car",
+    "ADD_CAR": "Add car",
     "UPDATE_PASSWORD_TITLE": "Update password",
     "NEW_PASSWORD": "New password",
     "CONFIRM_PASSWORD": "Confirm password"
@@ -48,7 +49,9 @@
     "UPDATE_TITLE": "Update car data",
     "MANUFACTURER_LABEL": "Manufacturer",
     "MODEL_LABEL": "Model",
+    "PURCHASE_DATE_LABEL": "Purchase date",
     "LICENSE_PLATE_LABEL": "License plate",
+    "LICENSE_PLATE_EXPIRATION_DATE_LABEL": "License plate expiration date",
     "ENERGY_LABEL": "Energy label",
     "STOLEN_LABEL": "Has the car been stolen?",
     "TRACKER_LABEL": "Car tracker identifier"

@@ -8,9 +8,9 @@ import org.junit.Test;
 /**
  * Created by Nino Vrijman on 2-5-2017.
  */
-public class UserRestTest extends ExtendedRestTestCase {
+public class OwnerRestTest extends ExtendedRestTestCase {
 
-    public UserRestTest() {
+    public OwnerRestTest() {
         super("http://localhost:8080/");
     }
 
