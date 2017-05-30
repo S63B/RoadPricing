@@ -4,6 +4,7 @@ import { RideService } from "app/ride.service";
 import { Pol } from "app/pol";
 import { Invoice } from "app/invoice";
 import { User } from "app/user";
+import { InvoiceService } from "app/invoice.service";
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,7 @@ export class HomeComponent implements OnInit {
   rides: Ride[] = [];
   invoices: Invoice[] = [];
 
-  constructor(private rideService: RideService) { }
+  constructor(private rideService: RideService, private invoiceService: InvoiceService) { }
 
   ngOnInit() {
     let date = new Date();
@@ -29,7 +30,7 @@ export class HomeComponent implements OnInit {
   }
 
   public getRidesBetween(startTime: number, endTime: number) {
-    this.rideService.getRidesBetween('69JGV5', startTime, endTime).subscribe(rides => {
+    this.rideService.getRidesBetween('10DRLL', startTime, endTime).subscribe(rides => {
       this.rides = rides;
     });
     
@@ -43,14 +44,8 @@ export class HomeComponent implements OnInit {
 
 
   public getInvoices() {
-    // this.rideService.getRidesBetween('bramdb', startTime, endTime).subscribe(rides => {
-    //   this.rides = rides;
-    // });
-
-    let user: User = new User();
-    this.invoices.push(new Invoice(1, user, new Date(), 123, new Date(), new Date(), 1, 'nl'));
-    this.invoices.push(new Invoice(1, user, new Date(), 123, new Date(), new Date(), 1, 'nl'));
-    this.invoices.push(new Invoice(1, user, new Date(), 123, new Date(), new Date(), 1, 'nl'));
-    this.invoices.push(new Invoice(1, user, new Date(), 123, new Date(), new Date(), 1, 'nl'));
+    this.invoiceService.getInvoices('1').subscribe(invoices => {
+       this.invoices = invoices;
+    });
   }
 }

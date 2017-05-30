@@ -3,6 +3,6 @@ export class Pol {
         public id: number,
         public lat: number,
         public lng: number,
-        public date: number) {
+        public timestampMillis: number) {
     }
 }
