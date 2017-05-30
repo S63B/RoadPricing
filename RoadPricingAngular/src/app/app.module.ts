@@ -17,13 +17,14 @@ import { HttpService } from "app/http.service";
 import { RideService } from "app/ride.service";
 import { InvoiceService } from "app/invoice.service";
 import { DistancePipe } from './distance.pipe';
+import { JodatimePipe } from './jodatime.pipe';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { DirectionsMapDirective } from './directions-map.directive';
 import { MapComponent } from './map/map.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CarComponent } from './car/car.component';
 import { CarService } from "app/car.service";
-import { UserService } from "app/user.service";
+import { OwnerService } from "app/user.service";
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { UserService } from "app/user.service";
     RidesComponent,
     InvoicesComponent,
     DistancePipe,
+    JodatimePipe,
     ProfileComponent,
     CarComponent,
     DirectionsMapDirective,
@@ -56,7 +58,7 @@ import { UserService } from "app/user.service";
     RideService,
     InvoiceService,
     CarService,
-    UserService
+    OwnerService
   ],
   bootstrap: [AppComponent]
 })

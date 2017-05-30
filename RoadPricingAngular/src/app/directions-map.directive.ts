@@ -22,7 +22,9 @@ export class DirectionsMapDirective {
       let waypoints: Waypoint[] = [];
 
       for (var i = 1; i < this.pols.length - 1; i++) {
-        waypoints.push(new Waypoint(new google.maps.LatLng(this.pols[i].lat, this.pols[i].lng), true));
+        if(i < 24){
+          waypoints.push(new Waypoint(new google.maps.LatLng(this.pols[i].lat, this.pols[i].lng), true));
+        }
       }
 
       directionsDisplay.setMap(map);

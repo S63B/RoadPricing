@@ -1,4 +1,9 @@
 {
+  "GLOBAL": {
+    "SUBMIT_BUTTON": "Bevestig",
+    "EDIT_BUTTON": "Bewerk",
+    "UPDATE_BUTTON": "Update"
+  },
   "HEADER": {
     "TITLE": "Rekeningrijden",
     "HOME": "Home",
@@ -25,5 +30,30 @@
     "PAYMENT_STATUS": "Status",
     "COUNTRY_OF_ORIGIN": "Land van herkomst",
     "PERIOD": "Periode"
+  },
+  "PROFILE": {
+    "TITLE": "Profiel",
+    "NAME_LABEL": "Naam",
+    "ADDRESS_LABEL": "Adres",
+    "RESIDENCE_LABEL": "Woonplaats",
+    "CAR_OWNERSHIP_TITLE": "Uw auto's",
+    "NO_CARS": "U heeft nog geen auto's toegevoegd!",
+    "ADD_FIRST_CAR": "Voeg uw eerste auto toe",
+    "ADD_CAR": "Voeg auto toe",
+    "UPDATE_PASSWORD_TITLE": "Update wachtwoord",
+    "NEW_PASSWORD": "Nieuw wachtwoord",
+    "CONFIRM_PASSWORD": "Bevestig wachtwoord"
+  },
+  "CAR": {
+    "NEW_TITLE": "Nieuwe auto",
+    "UPDATE_TITLE": "Werk auto gegevens bij",
+    "MANUFACTURER_LABEL": "Autofabrikant",
+    "MODEL_LABEL": "Model",
+    "PURCHASE_DATE_LABEL": "Datum van aankoop",
+    "LICENSE_PLATE_LABEL": "Kentenkenplaat",
+    "LICENSE_PLATE_EXPIRATION_DATE_LABEL": "Kentekenplaat geldig tot",
+    "ENERGY_LABEL": "Energie label",
+    "STOLEN_LABEL": "Is de auto gestolen?",
+    "TRACKER_LABEL": "Car tracker identificatienummer"
   }
 }

@@ -1,4 +1,9 @@
 {
+  "GLOBAL": {
+    "SUBMIT_BUTTON": "Submit",
+    "EDIT_BUTTON": "Edit",
+    "UPDATE_BUTTON": "Update"
+  },
   "HEADER": {
     "TITLE": "Road pricing",
     "HOME": "Home",
@@ -25,5 +30,30 @@
     "PAYMENT_STATUS": "Payment status",
     "COUNTRY_OF_ORIGIN": "Country of origin",
     "PERIOD": "Period"
+  },
+  "PROFILE": {
+    "TITLE": "Profile",
+    "NAME_LABEL": "Name",
+    "ADDRESS_LABEL": "Address",
+    "RESIDENCE_LABEL": "Residence",
+    "CAR_OWNERSHIP_TITLE": "Your cars",
+    "NO_CARS": "You haven't added any cars yet!",
+    "ADD_FIRST_CAR": "Add first car",
+    "ADD_CAR": "Add car",
+    "UPDATE_PASSWORD_TITLE": "Update password",
+    "NEW_PASSWORD": "New password",
+    "CONFIRM_PASSWORD": "Confirm password"
+  },
+  "CAR": {
+    "NEW_TITLE": "New car",
+    "UPDATE_TITLE": "Update car data",
+    "MANUFACTURER_LABEL": "Manufacturer",
+    "MODEL_LABEL": "Model",
+    "PURCHASE_DATE_LABEL": "Purchase date",
+    "LICENSE_PLATE_LABEL": "License plate",
+    "LICENSE_PLATE_EXPIRATION_DATE_LABEL": "License plate expiration date",
+    "ENERGY_LABEL": "Energy label",
+    "STOLEN_LABEL": "Has the car been stolen?",
+    "TRACKER_LABEL": "Car tracker identifier"
   }
 }
