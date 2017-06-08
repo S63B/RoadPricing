@@ -28,7 +28,7 @@ export class ProfileComponent implements OnInit {
 
   /**
    * Gets all user info from the current user.
-   * 
+   *
    * @param {number} userID The id of the user of which all info should be retrieved.
    */
   getUserInfo(userID: number) {
@@ -46,6 +46,7 @@ export class ProfileComponent implements OnInit {
   getUserCars(userId: number) {
     this.userService.getCarsByOwnerId(userId).subscribe(result => {
       this.ownedCars = result.json();
+      console.log(this.ownedCars);
     });
   }
 
