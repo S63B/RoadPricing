@@ -20,8 +20,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Configuration
 public class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
 
-	@Autowired
 	private OwnerDao ownerDao;
+
+	@Autowired
+	public WebSecurityConfiguration(OwnerDao ownerDao) {
+		this.ownerDao = ownerDao;
+	}
 
 	@Override
 	public void init(AuthenticationManagerBuilder auth) throws Exception {
@@ -45,7 +49,6 @@ public class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdap
 							+ username + "'");
 				}
 			}
-
 		};
 	}
 
