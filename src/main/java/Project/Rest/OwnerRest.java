@@ -1,5 +1,6 @@
 package Project.Rest;
 
+import Project.Services.AuthenticationService;
 import Project.Services.CarOwnerService;
 import Project.Services.OwnerService;
 import com.S63B.domain.Entities.Car;
@@ -27,11 +28,13 @@ import static javax.ws.rs.core.Response.Status.OK;
 public class OwnerRest {
     private OwnerService ownerService;
     private CarOwnerService carOwnerService;
+    private AuthenticationService authService;
 
     @Autowired
-    public OwnerRest(OwnerService ownerService, CarOwnerService carOwnerService) {
+    public OwnerRest(OwnerService ownerService, CarOwnerService carOwnerService, AuthenticationService authService) {
         this.ownerService = ownerService;
         this.carOwnerService = carOwnerService;
+        this.authService = authService;
     }
 
     /**
@@ -90,5 +93,48 @@ public class OwnerRest {
             status = HttpStatus.OK;
             return new ResponseEntity<>(ownedCars, status);
         }
+    }
+
+    /**
+     * Get the currently logged in owner
+     * @return The logged in Owner
+     */
+    @RequestMapping(value = "loggedin", method = RequestMethod.GET)
+    public ResponseEntity<Owner> getLoggedinUser() {
+        String loggedInUser = authService.getLoggedinUser();
+        Owner owner = ownerService.getByUsername(loggedInUser);
+
+        HttpStatus status;
+        if (owner != null) {
+            status = HttpStatus.OK;
+        } else {
+            status = HttpStatus.NO_CONTENT;
+        }
+
+        return new ResponseEntity<>(owner, status);
+    }
+
+    /**
+     * Update the password from the logged in owner
+     * @param password The new password
+     * @return the owner object which password has been changed
+     */
+    @RequestMapping(value = "alterpassword", method = RequestMethod.POST)
+    public ResponseEntity<Owner> updatePassword(@RequestParam("password") String password) {
+        String loggedInUser = authService.getLoggedinUser();
+        Owner owner = ownerService.getByUsername(loggedInUser);
+
+        String hashedPassword = authService.encodeString(password);
+        owner.setPassword(hashedPassword);
+        ownerService.update(owner);
+
+        HttpStatus status;
+        if (owner != null) {
+            status = HttpStatus.OK;
+        } else {
+            status = HttpStatus.NO_CONTENT;
+        }
+
+        return new ResponseEntity<>(owner, status);
     }
 }
