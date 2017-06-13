@@ -23,6 +23,9 @@
       <td>
         <a href="http://localhost:8080/download?id={{invoice?.id}}" target="_blank">Download</a>
       </td>
+      <td>
+        <a *ngIf="invoice?.paymentStatus == 0" href="http://localhost:8080/paypal/pay?price={{invoice?.totalPrice}}&invoice_id={{invoice?.id}}" target="_blank">Pay</a>
+      </td>
     </tr>
   </table>
 </div>
