@@ -26,6 +26,11 @@ export class HttpService {
     });
   }
 
+  public customPost(url, body, options) {
+    console.log(url);
+    return this.http.post(url, body, options);
+  }
+
   public put(url) {
     console.log(url);
     return this.http.put(url, {

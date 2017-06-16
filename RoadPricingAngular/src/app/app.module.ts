@@ -25,6 +25,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { CarComponent } from './car/car.component';
 import { CarService } from "app/car.service";
 import { OwnerService } from "app/user.service";
+import {RegistrationComponent} from "./registration/registration.component";
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { OwnerService } from "app/user.service";
     ProfileComponent,
     CarComponent,
     DirectionsMapDirective,
-    MapComponent
+    MapComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
