@@ -19,23 +19,25 @@ export class HttpService {
     });
   }
 
-  public post(url) {
+  public post(url, body?) {
     console.log(url);
-    return this.http.post(url, {
+    return this.http.post(url, body, {
       headers: this.setHeaders()
     });
   }
 
-  public put(url) {
+  public put(url, body?) {
     console.log(url);
-    return this.http.put(url, {
-      headers: this.setHeaders()
+    return this.http.put(url, body, {
+      headers: this.setHeaders(),
     });
   }
+
 
   private setHeaders(): Headers {
     const headers: Headers = new Headers();
-    //headers.append('Authorization', `Basic ${btoa('bramdb:steve')}`);
+    // TODO change for actual username and password / base64 encoded string of 'username:password'
+    headers.append('Authorization', `Basic ${btoa('admin:admin')}`);
     return headers;
   }
 }
