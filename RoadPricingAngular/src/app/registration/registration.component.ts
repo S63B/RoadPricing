@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Owner} from "../owner";
 import {OwnerService} from "../user.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-registration',
@@ -10,7 +11,7 @@ import {OwnerService} from "../user.service";
 export class RegistrationComponent implements OnInit {
   private owner: Owner = new Owner();
 
-  constructor(private ownerService: OwnerService) { }
+  constructor(private ownerService: OwnerService, private router: Router) { }
 
   ngOnInit() {
     this.owner.canEditPrice = false;
@@ -21,7 +22,7 @@ export class RegistrationComponent implements OnInit {
   register() {
     this.ownerService
       .register(this.owner)
-      .subscribe(res => console.log(res));
+      .subscribe(res => this.router.navigateByUrl(''));
   }
 
 }
