@@ -8,7 +8,9 @@
     "TITLE": "Road pricing",
     "HOME": "Home",
     "PROFILE": "Profile",
-    "SELECT_LANGUAGE": "Change language"
+    "REGISTER": "Register",
+    "SELECT_LANGUAGE": "Change language",
+    "LOGIN": "Login / Logout"
   },
   "RIDES": {
     "HEADER": "Rides",
@@ -55,5 +57,14 @@
     "ENERGY_LABEL": "Energy label",
     "STOLEN_LABEL": "Has the car been stolen?",
     "TRACKER_LABEL": "Car tracker identifier"
+  },
+  "REGISTER": {
+    "TITLE": "Register",
+    "NAME_LABEL": "Name",
+    "ADDRESS_LABEL": "Address",
+    "RESIDENCE_LABEL": "Residence",
+    "USERNAME_LABEL": "Username",
+    "PASSWORD_LABEL": "Password",
+    "REGISTER_BUTTON": "Register"
   }
 }

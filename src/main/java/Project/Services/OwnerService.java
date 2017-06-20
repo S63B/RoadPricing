@@ -21,6 +21,9 @@ public class OwnerService {
         return ownerDao.findOne(id);
     }
 
+    public Owner getByUsername(String username) {
+        return ownerDao.findByUsername(username);
+    }
     /**
      * Updates a owners (user).
      *

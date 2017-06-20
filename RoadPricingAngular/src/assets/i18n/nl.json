@@ -8,7 +8,9 @@
     "TITLE": "Rekeningrijden",
     "HOME": "Home",
     "PROFILE": "Profiel",
-    "SELECT_LANGUAGE": "Verander taal"
+    "REGISTER": "Registreer",
+    "SELECT_LANGUAGE": "Verander taal",
+    "LOGIN": "Inloggen / Uitloggen"
   },
   "RIDES": {
     "HEADER": "Ritten",
@@ -55,5 +57,14 @@
     "ENERGY_LABEL": "Energie label",
     "STOLEN_LABEL": "Is de auto gestolen?",
     "TRACKER_LABEL": "Car tracker identificatienummer"
+  },
+  "REGISTER": {
+    "TITLE": "Registreer",
+    "NAME_LABEL": "Naam",
+    "ADDRESS_LABEL": "Adres",
+    "RESIDENCE_LABEL": "Woonplaats",
+    "USERNAME_LABEL": "Gebruikersnaam",
+    "PASSWORD_LABEL": "Wachtwoord",
+    "REGISTER_BUTTON": "Registreer"
   }
 }

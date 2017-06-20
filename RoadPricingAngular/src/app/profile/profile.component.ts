@@ -3,6 +3,7 @@ import { OwnerService } from "app/user.service";
 import { ActivatedRoute } from "@angular/router";
 import { User } from "app/user";
 import { CarService } from "app/car.service";
+import {AuthService} from "../auth.service";
 
 @Component({
   selector: 'app-profile',
@@ -10,25 +11,28 @@ import { CarService } from "app/car.service";
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  private userId: number;
-  private user: User = new User();
-  private ownedCars: object[] = [];
+  public userId: number;
+  public user: User = new User();
+  public ownedCars: object[] = [];
 
-  constructor(private userService: OwnerService,
-              private route: ActivatedRoute) {
-    this.route.params.subscribe(parameters => {
-      this.userId = parameters['userId'];
-    });
+  constructor(public userService: OwnerService,
+              public route: ActivatedRoute,
+              public authService: AuthService) {
+
    }
 
   ngOnInit() {
-    this.getUserInfo(this.userId);
-    this.getUserCars(this.userId);
+    this.authService.getOwner().subscribe(res => {
+      this.userId = res.id;
+      this.getUserInfo(res.id);
+      this.getUserCars(res.id);
+    });
+
   }
 
   /**
    * Gets all user info from the current user.
-   * 
+   *
    * @param {number} userID The id of the user of which all info should be retrieved.
    */
   getUserInfo(userID: number) {
@@ -46,6 +50,7 @@ export class ProfileComponent implements OnInit {
   getUserCars(userId: number) {
     this.userService.getCarsByOwnerId(userId).subscribe(result => {
       this.ownedCars = result.json();
+      console.log(this.ownedCars);
     });
   }
 

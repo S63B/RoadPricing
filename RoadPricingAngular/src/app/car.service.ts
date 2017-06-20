@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from "app/http.service";
-import { API_URL, API_URL_LOCALHOST } from "app/constants";
+
+import { environment } from "environments/environment";
 
 @Injectable()
 export class CarService {
+  private API_URL_ROADPRICING: string = environment.roadPricingUrl;
 
   constructor(private httpService: HttpService) {
   }
@@ -15,7 +17,7 @@ export class CarService {
    * @returns {Car} A car object containing all information of a car.
    */
   getById(carId: number) {
-    return this.httpService.get(`${API_URL_LOCALHOST}/car?id=${carId}`);
+    return this.httpService.get(`${this.API_URL_ROADPRICING}/car?id=${carId}`);
   }
 
   /**
@@ -28,7 +30,7 @@ export class CarService {
    * @param {number} trackerSerialNumber The serial number of the tracker that is being used by the car.
    */
   create(userId: number, licenseplate: string, licenseExpirationDate: string, carPurchaseDate: string, energylabel: string, trackerSerialNumber: string) {
-    return this.httpService.post(`${API_URL_LOCALHOST}/car/create?userId=${userId}&licensePlate=${licenseplate}&expirationDate=${licenseExpirationDate}&purchaseDate=${carPurchaseDate}&energylabel=${energylabel}&trackerSerialNumber=${trackerSerialNumber}`);
+    return this.httpService.post(`${this.API_URL_ROADPRICING}/car/create?userId=${userId}&licensePlate=${licenseplate}&expirationDate=${licenseExpirationDate}&purchaseDate=${carPurchaseDate}&energylabel=${energylabel}&trackerSerialNumber=${trackerSerialNumber}`);
   }
 
   /**
@@ -41,7 +43,7 @@ export class CarService {
    * @param {number} trackerSerialNumber The serial number of the tracker that is being used by the car.
    */
   update(carId: number, licenseplate: string, licenseExpirationDate: string, carPurchaseDate: string, energyLabel: string, trackerSerialNumber: string) {
-    return this.httpService.put(`${API_URL_LOCALHOST}/car/update?carId=${carId}&licensePlate=${licenseplate}&expirationDate=${licenseExpirationDate}&purchaseDate=${carPurchaseDate}&energyLabel=${energyLabel}&trackerSerialNumber=${trackerSerialNumber}`);
+    return this.httpService.put(`${this.API_URL_ROADPRICING}/car/update?carId=${carId}&licensePlate=${licenseplate}&expirationDate=${licenseExpirationDate}&purchaseDate=${carPurchaseDate}&energyLabel=${energyLabel}&trackerSerialNumber=${trackerSerialNumber}`);
   }
 
   /**
