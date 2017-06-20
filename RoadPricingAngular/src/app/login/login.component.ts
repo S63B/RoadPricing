@@ -8,11 +8,11 @@ import {Router} from "@angular/router";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  private username: string = "";
-  private password: string = "";
-  private succes: boolean = true;
+  public username: string = "";
+  public password: string = "";
+  public succes: boolean = true;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(public authService: AuthService, public router: Router) { }
 
   ngOnInit() {
     this.authService.logout();
@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('');
       }
       else {
+        console.log("Failed logging in")
         localStorage.removeItem("auth");
       }
     })

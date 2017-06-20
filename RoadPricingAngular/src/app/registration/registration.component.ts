@@ -9,9 +9,9 @@ import {Router} from "@angular/router";
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-  private owner: Owner = new Owner();
+  public owner: Owner = new Owner();
 
-  constructor(private ownerService: OwnerService, private router: Router) { }
+  constructor(public ownerService: OwnerService, public router: Router) { }
 
   ngOnInit() {
     this.owner.canEditPrice = false;

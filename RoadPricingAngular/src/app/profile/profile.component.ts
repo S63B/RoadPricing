@@ -10,12 +10,12 @@ import { CarService } from "app/car.service";
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  private userId: number;
-  private user: User = new User();
-  private ownedCars: object[] = [];
+  public userId: number;
+  public user: User = new User();
+  public ownedCars: object[] = [];
 
-  constructor(private userService: OwnerService,
-              private route: ActivatedRoute) {
+  constructor(public userService: OwnerService,
+              public route: ActivatedRoute) {
     this.route.params.subscribe(parameters => {
       this.userId = parameters['userId'];
     });
