@@ -8,7 +8,10 @@
     "TITLE": "Rekeningrijden",
     "HOME": "Home",
     "PROFILE": "Profiel",
-    "SELECT_LANGUAGE": "Verander taal"
+    "REGISTER": "Registreer",
+    "SELECT_LANGUAGE": "Verander taal",
+    "LOGIN": "Inloggen / Uitloggen"
+
   },
   "RIDES": {
     "HEADER": "Ritten",
@@ -43,6 +46,15 @@
     "UPDATE_PASSWORD_TITLE": "Update wachtwoord",
     "NEW_PASSWORD": "Nieuw wachtwoord",
     "CONFIRM_PASSWORD": "Bevestig wachtwoord"
+  },
+  "REGISTER": {
+    "TITLE": "Registreer",
+    "NAME_LABEL": "Naam",
+    "ADDRESS_LABEL": "Adres",
+    "RESIDENCE_LABEL": "Woonplaats",
+    "USERNAME_LABEL": "Gebruikersnaam",
+    "PASSWORD_LABEL": "Wachtwoord",
+    "REGISTER_BUTTON": "Registreer"
   },
   "CAR": {
     "NEW_TITLE": "Nieuwe auto",

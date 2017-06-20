@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from "app/http.service";
 
-import { API_URL_LOCALHOST } from './constants';
+import {API_URL_ADMINISTRATION, API_URL_LOCALHOST} from './constants';
 import { Observable } from "rxjs/Rx";
+import {Owner} from "./owner";
+import {RequestOptions, Headers} from "@angular/http";
 
 @Injectable()
 export class OwnerService {
@@ -12,7 +14,7 @@ export class OwnerService {
 
   /**
    * Gets all info of a user.
-   * 
+   *
    * @param {number} id The id of the user of which all information should be retrieved.
    * @returns
    */
@@ -24,7 +26,7 @@ export class OwnerService {
 
   /**
    * Updates the info of a user.
-   * 
+   *
    * @param {number} id The id of the user which should be updated.
    * @param {string} address The address of the user.
    * @param {string} residence The residence of the user.
@@ -41,6 +43,25 @@ export class OwnerService {
    */
   getCarsByOwnerId(ownerId: number) {
     return this.httpService.get(`${API_URL_LOCALHOST}/owner/${ownerId}/cars`);
+  }
+
+  /**
+   * Register an Owner.
+   * @param owner The newly created owner
+   */
+  register(owner: Owner) {
+    let url = `${API_URL_ADMINISTRATION}/owner/create`;
+    let body = JSON.stringify(owner);
+    console.log(body);
+
+    let head = new Headers();
+    head.append("Content-Type", 'application/json');
+
+    let options = new RequestOptions({headers: head});
+
+    return this.httpService
+      .nonAuthorizedPost(url, body, options)
+      .map(res => res.status);
   }
 
 }

@@ -8,6 +8,7 @@
     "TITLE": "Road pricing",
     "HOME": "Home",
     "PROFILE": "Profile",
+    "REGISTER": "Register",
     "SELECT_LANGUAGE": "Change language"
   },
   "RIDES": {
@@ -43,6 +44,15 @@
     "UPDATE_PASSWORD_TITLE": "Update password",
     "NEW_PASSWORD": "New password",
     "CONFIRM_PASSWORD": "Confirm password"
+  },
+  "REGISTER": {
+    "TITLE": "Register",
+    "NAME_LABEL": "Name",
+    "ADDRESS_LABEL": "Address",
+    "RESIDENCE_LABEL": "Residence",
+    "USERNAME_LABEL": "Username",
+    "PASSWORD_LABEL": "Password",
+    "REGISTER_BUTTON": "Register"
   },
   "CAR": {
     "NEW_TITLE": "New car",
