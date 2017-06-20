@@ -31,4 +31,19 @@ export class AuthService {
     localStorage.removeItem("auth");
     this.router.navigateByUrl('login');
   }
+
+  setOwner() {
+    console.log("Setting owner");
+    let url = `${this.API_URL_ROADPRICING}/owner/loggedin`;
+    return this.httpService.get(url)
+      .map(res => res)
+      .catch(res => Observable.of(res));
+  }
+
+  getOwner() {
+    let url = `${this.API_URL_ROADPRICING}/owner/loggedin`;
+    return this.httpService.get(url)
+      .map(res => res.json())
+      .catch(res => Observable.of(res.json()));
+  }
 }

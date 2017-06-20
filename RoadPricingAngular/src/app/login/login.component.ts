@@ -25,8 +25,6 @@ export class LoginComponent implements OnInit {
       console.log(`Succes: ${this.succes}`);
 
       if (this.succes) {
-        console.log('Log in succesfull');
-        // localStorage.setItem("owner", res);
         this.router.navigateByUrl('');
       }
       else {
