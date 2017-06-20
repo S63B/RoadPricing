@@ -3,6 +3,7 @@ import { OwnerService } from "app/user.service";
 import { ActivatedRoute } from "@angular/router";
 import { User } from "app/user";
 import { CarService } from "app/car.service";
+import {AuthService} from "../auth.service";
 
 @Component({
   selector: 'app-profile',
@@ -15,15 +16,18 @@ export class ProfileComponent implements OnInit {
   public ownedCars: object[] = [];
 
   constructor(public userService: OwnerService,
-              public route: ActivatedRoute) {
-    this.route.params.subscribe(parameters => {
-      this.userId = parameters['userId'];
-    });
+              public route: ActivatedRoute,
+              public authService: AuthService) {
+
    }
 
   ngOnInit() {
-    this.getUserInfo(this.userId);
-    this.getUserCars(this.userId);
+    this.authService.getOwner().subscribe(res => {
+      this.userId = res.id;
+      this.getUserInfo(res.id);
+      this.getUserCars(res.id);
+    });
+
   }
 
   /**

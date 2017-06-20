@@ -5,6 +5,7 @@ import { Pol } from "app/pol";
 import { Invoice } from "app/invoice";
 import { User } from "app/user";
 import { InvoiceService } from "app/invoice.service";
+import {AuthService} from "../auth.service";
 
 @Component({
   selector: 'app-home',
@@ -12,28 +13,44 @@ import { InvoiceService } from "app/invoice.service";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+  public ownerId: number;
   rides: Ride[] = [];
   invoices: Invoice[] = [];
 
-  constructor(private rideService: RideService, private invoiceService: InvoiceService) { }
+  constructor(private rideService: RideService, private invoiceService: InvoiceService, private authService: AuthService) { }
 
   ngOnInit() {
-    let date = new Date();
-    let currentMilis: number = Date.now();
-    date.setMonth(date.getMonth() - 1);
-    let prevMonthMilis: number = date.getMilliseconds();
+    this.authService.getOwner().subscribe(res => {
+      this.ownerId = res.id;
 
-    this.getRidesBetween(prevMonthMilis, currentMilis);
+      let date = new Date();
+      let currentMilis: number = Date.now();
+      date.setMonth(date.getMonth() - 1);
+      let prevMonthMilis: number = date.getMilliseconds();
 
-    this.getInvoices();
+      this.getRidesBetween(prevMonthMilis, currentMilis);
+
+      this.getInvoices();
+    });
+
   }
 
   public getRidesBetween(startTime: number, endTime: number) {
-    this.rideService.getRidesBetween('10DRLL', startTime, endTime).subscribe(rides => {
-      this.rides = rides;
-    });
-    
+    this.rideService.getCars(this.ownerId).subscribe(res => {
+        console.log(res);
+        for (let car in res) {
+          let value = res[car];
+          this.rideService.getRidesBetween(value.licensePlate.license, startTime, endTime).subscribe(rides => {
+            console.log(rides);
+            for(let ride in rides) {
+              let singleRide = rides[ride];
+              this.rides.push(singleRide);
+            }
+          });
+        }
+    })
+
+
     //   let pol: Pol = new Pol(1, 52.5, 5.7, 858);
     //   let pol2: Pol = new Pol(1, 52.5, 5.8, 858);
     //   let pol3: Pol = new Pol(1, 52.5, 5.9, 858);
@@ -44,8 +61,15 @@ export class HomeComponent implements OnInit {
 
 
   public getInvoices() {
-    this.invoiceService.getInvoices('1').subscribe(invoices => {
-       this.invoices = invoices;
+    this.authService.getOwner().subscribe(res => {
+      console.log(res);
+      let ownerId = res.id;
+
+      this.invoiceService.getInvoices(ownerId).subscribe(invoices => {
+        this.invoices = invoices;
+      });
     });
+
+
   }
 }
