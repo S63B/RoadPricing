@@ -9,6 +9,7 @@ import { environment } from "environments/environment";
 @Injectable()
 export class InvoiceService {
   private API_URL_ROADPRICING: string = environment.roadPricingUrl;
+  private API_URL_ADMINISTRATION: string = environment.administrationUrl;
 
   constructor(private httpService: HttpService) { }
 
@@ -17,4 +18,11 @@ export class InvoiceService {
       .map(this.httpService.extractData);
   }
 
+  pay(totalPrice: number, invoiceId: number) {
+    return this.httpService.get(`${this.API_URL_ROADPRICING}/paypal/pay?price=${totalPrice}&invoice_id=${invoiceId}`);
+  }
+
+  download(invoiceId: number) {
+    return this.httpService.get(`${this.API_URL_ADMINISTRATION}/download?id=${invoiceId}`);
+  }
 }
