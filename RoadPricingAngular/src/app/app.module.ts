@@ -26,6 +26,9 @@ import { CarComponent } from './car/car.component';
 import { CarService } from "app/car.service";
 import { OwnerService } from "app/user.service";
 import {RegistrationComponent} from "./registration/registration.component";
+import {LoginComponent} from "./login/login.component";
+import {AuthService} from "./auth.service";
+import {CanActivateAuthGuard} from "./can-active.authguard";
 
 export function createTranslateStaticLoader(http: Http) {
   return new TranslateStaticLoader(http, '/assets/i18n', '.json');
@@ -46,7 +49,8 @@ export function createTranslateStaticLoader(http: Http) {
     CarComponent,
     DirectionsMapDirective,
     MapComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +72,9 @@ export function createTranslateStaticLoader(http: Http) {
     RideService,
     InvoiceService,
     CarService,
-    OwnerService
+    OwnerService,
+    AuthService,
+    CanActivateAuthGuard
   ],
   bootstrap: [AppComponent]
 })

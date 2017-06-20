@@ -22,7 +22,9 @@ export class AuthService {
     localStorage.setItem("auth", `${btoa(`${username}:${password}`)}`);
 
     let url = `${this.API_URL_ROADPRICING}/owner/loggedin`;
-    return this.httpService.get(url).map(res => res.status);
+    return this.httpService.get(url)
+      .map(res => res.status)
+      .catch(res => Observable.of(res.status));
   }
 
   logout() {

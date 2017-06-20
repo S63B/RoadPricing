@@ -8,9 +8,9 @@ import { CarService } from "app/car.service";
   styleUrls: ['./car.component.css']
 })
 export class CarComponent implements OnInit {
-  private userId: number;
-  private isNewCar: boolean;
-  private ownership = {
+  public userId: number;
+  public isNewCar: boolean;
+  public ownership = {
     car: {
       id: 0,
       licensePlate: {
@@ -25,12 +25,12 @@ export class CarComponent implements OnInit {
       serialNumber: ''
     }
   };
-  private energyLabels: string[] = ["A", "B", "C", "D", "E", "F"];
+  public energyLabels: string[] = ["A", "B", "C", "D", "E", "F"];
 
   constructor(
-    private activatedRoute: ActivatedRoute,
-    private carService: CarService,
-    private router: Router) {
+    public activatedRoute: ActivatedRoute,
+    public carService: CarService,
+    public router: Router) {
 
   }
 
@@ -55,7 +55,7 @@ export class CarComponent implements OnInit {
 
   /**
    * Gets all information of a car with the given id.
-   * 
+   *
    * @param {number} carId The identifier of a car.
    */
   getCarInformation(carId: number) {
