@@ -9,7 +9,8 @@
     "HOME": "Home",
     "PROFILE": "Profile",
     "REGISTER": "Register",
-    "SELECT_LANGUAGE": "Change language"
+    "SELECT_LANGUAGE": "Change language",
+    "LOGIN": "Login / Logout"
   },
   "RIDES": {
     "HEADER": "Rides",
