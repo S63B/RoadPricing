@@ -19,7 +19,7 @@ export class RideService {
     return this.httpService.get(`${this.API_URL_ROADPRICING}/rides?license_plate=${id}&start_date=${startTime}&end_date=${endTime}`)
       .map(this.httpService.extractData);
   }
-  
+
   public get(id: String): Observable<Ride> {
     return this.httpService.get(`${this.API_URL_ROADPRICING}/ride?id=${id}`)
       .map(response => response.json());

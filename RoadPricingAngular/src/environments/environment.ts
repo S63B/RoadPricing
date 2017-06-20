@@ -6,5 +6,6 @@
 export const environment = {
   production: false,
   envName: 'dev',
-  roadPricingUrl: 'http://localhost:8083'
+  roadPricingUrl: 'http://localhost:8083',
+  administrationUrl: 'http://localhost:8082'
 };
