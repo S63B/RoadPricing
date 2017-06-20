@@ -50,7 +50,6 @@ export class OwnerService {
    * @param owner The newly created owner
    */
   register(owner: Owner) {
-    //Send request to the administration backend. /owner/create with owner in the body.
     let url = `${API_URL_ADMINISTRATION}/owner/create`;
     let body = JSON.stringify(owner);
     console.log(body);
@@ -60,11 +59,9 @@ export class OwnerService {
 
     let options = new RequestOptions({headers: head});
 
-    //return this.httpService.post(url);
-
     return this.httpService
-      .customPost(url, body, options)
-      .map(this.httpService.extractData);
+      .nonAuthorizedPost(url, body, options)
+      .map(res => res.status);
   }
 
 }

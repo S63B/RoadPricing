@@ -22,7 +22,14 @@ export class RegistrationComponent implements OnInit {
   register() {
     this.ownerService
       .register(this.owner)
-      .subscribe(res => this.router.navigateByUrl(''));
+      .subscribe(res => {
+        console.log(res);
+        if (res == 200) {
+          this.router.navigateByUrl('');
+        }  else {
+          this.owner = new Owner();
+        }
+      });
   }
 
 }

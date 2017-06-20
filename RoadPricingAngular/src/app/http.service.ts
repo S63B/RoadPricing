@@ -26,7 +26,7 @@ export class HttpService {
     });
   }
 
-  public customPost(url, body, options) {
+  public nonAuthorizedPost(url, body, options) {
     console.log(url);
     return this.http.post(url, body, options);
   }
