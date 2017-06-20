@@ -9,7 +9,9 @@
     "HOME": "Home",
     "PROFILE": "Profiel",
     "REGISTER": "Registreer",
-    "SELECT_LANGUAGE": "Verander taal"
+    "SELECT_LANGUAGE": "Verander taal",
+    "LOGIN": "Inloggen / Uitloggen"
+
   },
   "RIDES": {
     "HEADER": "Ritten",
