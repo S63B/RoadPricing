@@ -29,7 +29,7 @@ export class RideService {
   }
 
   public getCars(id: number) : Observable<any> {
-    return this.httpService.get(`${this.API_URL_ADINISTRATION}/owner/${id}/cars`)
+    return this.httpService.get(`${this.API_URL_ROADPRICING}/owner/${id}/cars`)
       .map(response => response.json());
   }
 }
