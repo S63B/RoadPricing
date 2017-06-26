@@ -36,7 +36,7 @@ public class PayPalRest {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/pay")
-    public ResponseEntity<String> pay(HttpServletRequest request, HttpServletResponse httpServletResponse, @RequestParam("price") double price, @RequestParam("invoice_id") String invoice_id){
+    public ResponseEntity<String> pay(HttpServletRequest request, @RequestParam("price") double price, @RequestParam("invoice_id") String invoice_id){
         String cancelUrl = URLUtils.getBaseURl(request) + "/paypal/cancel";
         String successUrl = URLUtils.getBaseURl(request) + "/paypal/success";
         try {
@@ -80,7 +80,7 @@ public class PayPalRest {
                 }
 
                 RedirectView redirectView = new RedirectView();
-                redirectView.setUrl("http://localhost:4200/");
+                redirectView.setUrl("http://192.168.24.120:4202/");
                 return redirectView;
 //                return "success";
             }
@@ -89,7 +89,7 @@ public class PayPalRest {
         }
 
         RedirectView redirectView = new RedirectView();
-        redirectView.setUrl("http://localhost:4200/");
+        redirectView.setUrl("http://192.168.24.120:4202/");
         return redirectView;
     }
 }
