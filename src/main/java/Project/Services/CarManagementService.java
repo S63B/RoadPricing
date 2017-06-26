@@ -42,7 +42,7 @@ public class CarManagementService {
 
         Tracker carTracker = trackerService.findBySerialNumber(trackerSerialNumber);
         if (carTracker == null) {
-            carTracker = createCarTracker(trackerSerialNumber, "NETHERLANDS");
+            carTracker = createCarTracker(trackerSerialNumber, "NETHERLANDS", newCar);
         }
         newCar.setTracker(carTracker);
 
@@ -64,8 +64,9 @@ public class CarManagementService {
         return licensePlateService.create(newLicensePlate);
     }
 
-    public Tracker createCarTracker(String serialNumber, String country) {
+    public Tracker createCarTracker(String serialNumber, String country, Car car) {
         Tracker newTracker = new Tracker(serialNumber, country);
+        newTracker.setCar(car);
         return this.trackerService.create(newTracker);
     }
 
@@ -97,7 +98,7 @@ public class CarManagementService {
                 || !updatedCar.getTracker().getSerialNumber().equals(trackerSerialNumber)) {
             Tracker carTracker = trackerService.findBySerialNumber(trackerSerialNumber);
             if (carTracker == null) {
-                carTracker = createCarTracker(trackerSerialNumber, "NETHERLANDS");
+                carTracker = createCarTracker(trackerSerialNumber, "NETHERLANDS", updatedCar);
             }
             updatedCar.setTracker(carTracker);
         }
