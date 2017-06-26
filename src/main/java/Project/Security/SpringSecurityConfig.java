@@ -24,6 +24,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.addFilterBefore(new CorsFilter(createCorsConfigurationSource()), ChannelProcessingFilter.class)
 			.authorizeRequests()
 				.antMatchers(HttpMethod.OPTIONS, "/*").permitAll()
+				.antMatchers("/paypal**").permitAll()
 				.anyRequest().fullyAuthenticated()
 				.and()
 			.httpBasic()
