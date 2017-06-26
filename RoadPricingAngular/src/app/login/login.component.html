@@ -13,6 +13,7 @@
       </div>
 
       <button (click)="login()" type="submit" class="btn btn-primary" [disabled]="!userForm.valid">Login</button>
+      <a routerLink="/register"><button class="btn btn-default">Registreer</button></a>
     </form>
 
     <div *ngIf="!succes">Failed to login</div>
